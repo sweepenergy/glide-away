@@ -1,0 +1,33 @@
+version: "3.8"
+
+services:
+    # The Modbus TCP Server is a simple, in python written, Modbus TCP server. It listens to port 5020 and respond to any register types with a 0x0000. The Modbus registers can be also predefined with values.
+    modbus-server:
+        container_name: modbus-server
+        image: oitc/modbus-server
+        restart: always
+        command: -f /server_config.json
+        volumes:
+            - ./modbus/server_config.json:/server_config.json
+        ports:
+            - target: 5020 # the port inside the container
+              published: 5020 # the publicly exposed port
+              protocol: tcp
+              mode: bridge
+
+    # The Modbus TCP Client is a comand line tool, written in python to read and interpret Modbus registers.
+    # modbus-client:
+    #   container_name: modbus-client
+    #   image: oitc/modbus-client
+    #   command: -s 192.168.58.70 -p 1503 -t 4 -r 0 -l 10
+
+    app:
+        container_name: app
+        build:
+            context: ./app
+            dockerfile: Dockerfile
+        ports:
+            - target: 3000
+              published: 80
+              protocol: tcp
+              mode: bridge
