@@ -61,7 +61,7 @@ const getMeterValue = async () => {
 				);
 			else
 				console.log(
-					chalk.white.bold("Data [1099, 2]: ") +
+					chalk.white.bold("Data [1101, 2]: ") +
 						`${chalk.blue(JSON.stringify(data))}` +
 						chalk.white.bold(", buffer: ") +
 						`${chalk.yellow(data.buffer.readFloatBE())}`
