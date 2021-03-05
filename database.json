@@ -1,0 +1,14 @@
+{
+    "Servers": {
+        "1": {
+            "Name": "GlideAway",
+            "Group": "Sweep24",
+            "Port": 45432,
+            "Username": "docker",
+            "Password": "docker",
+            "Host": "host.docker.internal",
+            "SSLMode": "prefer",
+            "MaintenanceDB": "glide_away"
+        }
+    }
+}

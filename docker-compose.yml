@@ -26,8 +26,63 @@ services:
         build:
             context: ./app
             dockerfile: Dockerfile
+        depends_on: 
+            - api
         ports:
             - target: 3000
               published: 80
               protocol: tcp
               mode: bridge
+
+    api:
+        container_name: api
+        build: 
+            context: ./api
+            dockerfile: Dockerfile
+        depends_on: 
+            - glide_away_admin
+        ports:
+            - target: 3001
+              published: 3001
+              protocol: tcp
+              mode: bridge
+
+    glide_away_db:
+        container_name: glide_away_db
+        image: postgres:12.2-alpine
+        restart: unless-stopped
+        volumes:
+            - database-data:/var/lib/postgresql/data/
+        environment: 
+            POSTGRES_USER: docker
+            POSTGRES_PASSWORD: docker
+            POSTGRES_DB: glide_away
+            POSTGRES_HOST: localhost
+            POSTGRES_PORT: 5432
+            PGDATA: /var/lib/postgresql/data/
+        depends_on: 
+            - modbus-server
+        ports:
+            - target: 5432
+              published: 45432
+              protocol: tcp
+              mode: bridge
+    
+    glide_away_admin:
+        container_name: glide_away_admin
+        image: dpage/pgadmin4
+        environment: 
+            PGADMIN_DEFAULT_EMAIL: "admin@glide.away"
+            PGADMIN_DEFAULT_PASSWORD: "password"
+        volumes:
+            - ./database.json:/pgadmin4/servers.json
+        depends_on: 
+            - glide_away_db
+        ports: 
+            - target: 80
+              published: 8080
+              protocol: tcp
+              mode: bridge
+
+volumes:
+    database-data:

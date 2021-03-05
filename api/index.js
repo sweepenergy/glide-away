@@ -3,11 +3,29 @@ const ModbusRTU = require("modbus-serial");
 const chalk = require("chalk");
 const PORT = 5020;
 
+const environment = () => {
+	switch (process.env.NODE_ENV) {
+		case "docker":
+			return "host.docker.internal";
+		case "prod":
+		case "production":
+			return "some_production_url";
+		case "dev":
+		case "development":
+		default:
+			return "localhost";
+	}
+};
+
 const client = new ModbusRTU();
 client
-	.connectTCP("localhost", { port: PORT })
+	.connectTCP(environment(), { port: PORT })
 	.then(() => {
-		console.log("TCP Protocol " + chalk.keyword("orange")("Connected") + ` on port ${chalk.green(PORT)}`);
+		console.log(
+			"TCP Protocol " +
+				chalk.keyword("orange")("Connected") +
+				` on port ${chalk.green(PORT)}`
+		);
 	})
 	.catch((e) => {
 		console.error(chalk.red(e.message));
