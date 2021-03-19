@@ -41,11 +41,20 @@ services:
             dockerfile: Dockerfile
         depends_on: 
             - glide_away_admin
+            - stream
         ports:
             - target: 3001
               published: 3001
               protocol: tcp
               mode: bridge
+    
+    stream:
+        container_name: stream
+        build:
+            context: ./stream
+            dockerfile: Dockerfile
+        depends_on: 
+            - glide_away_admin
 
     glide_away_db:
         container_name: glide_away_db
