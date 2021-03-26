@@ -17,11 +17,11 @@ sweepapi_user = os.getenv('SWEEP_API_ID') ## user key from api keys ui
 sweepapi_token = os.getenv('SWEEP_API_TOKEN') ## user token from api keys ui
 
 
-sweepapi_user = ""
-sweepapi_token = ""
+sweepapi_user = "263bec6f-d00b-4c18-998a-b868bfdcee1a"
+sweepapi_token = "2653b7ec-578e-4836-a956-01d0a51af78b"
 
 
-endpoint = "wss://qa.rt.sweepapi.com/?auth_user={}&auth_key={}".format(sweepapi_user,sweepapi_token)
+endpoint = "wss://rt.sweepapi.com/?auth_user={}&auth_key={}".format(sweepapi_user,sweepapi_token)
 
 def on_message(ws, message):
     try:
@@ -131,14 +131,14 @@ def sleepResolveError(error):
 
 if __name__ == '__main__':
 
-    websocket.enableTrace(False)
-    ws = websocket.WebSocketApp(endpoint,
-                              on_message = on_message,
-                              on_error = on_error,
-                              on_close = on_close)
-    ws.on_open = on_open
-    print("Saving WS to thread", flush=True)
-    thread.start_new_thread(ws.run_forever, ())
+    #websocket.enableTrace(False)
+    # ws = websocket.WebSocketApp(endpoint,
+    #                           on_message = on_message,
+    #                           on_error = on_error,
+    #                           on_close = on_close)
+    # ws.on_open = on_open
+    # print("Saving WS to thread", flush=True)
+    # thread.start_new_thread(ws.run_forever, ())
 
 
     home_directory = getDir("home")
