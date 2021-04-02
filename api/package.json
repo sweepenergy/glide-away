@@ -13,6 +13,10 @@
   },
   "dependencies": {
     "chalk": "^4.1.0",
-    "modbus-serial": "^8.0.1"
-  }
+    "modbus-serial": "^8.0.1",
+    "pg": "^8.5.1"
+  },
+  "devDependencies": {},
+  "keywords": [],
+  "author": ""
 }
