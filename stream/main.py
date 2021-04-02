@@ -13,7 +13,7 @@ from requests.auth import HTTPBasicAuth
 from concurrent.futures import ThreadPoolExecutor, as_completed, process
 
 URL = config("URL")
-SWEEP_API_USER = config("SWEEP_API_ID")
+SWEEP_API_USER = config("SWEEP_API_KEY")
 SWEEP_API_TOKEN = config("SWEEP_API_TOKEN")
 ENDPOINT = "wss://rt.sweepapi.com/?auth_user={0}&auth_key={1}".format(
     SWEEP_API_USER, SWEEP_API_TOKEN)
@@ -150,7 +150,7 @@ if __name__ == "__main__":
                     line = {}
                     sample = 34.5  # Randome data
                     line["payload"] = {"timestamp": time_now, "sample": sample}
-                    line["url"] = "/stream/{}/ts/{}/dataset".format(
+                    line["url"] = "/stream/{0}/ts/{1}/dataset".format(
                         URL, alias_station_stream_id[station_item]["id"], "wind_speed")
                     url_dataset.append(line)
                     print(url_dataset)
