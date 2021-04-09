@@ -1,0 +1,9 @@
+.data{
+    width: 90%;
+    margin:auto;
+}
+
+h1{
+    border:none;
+    border-bottom: black 3px solid;
+}

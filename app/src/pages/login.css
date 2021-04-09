@@ -1,0 +1,13 @@
+.login{
+    background-color: #fff;
+    text-align: center;
+    width: 80%;
+    margin: auto;
+    padding-top: 7%;
+    
+}
+
+.title {
+    font: bold 30px courier;
+    color:grey;
+}
