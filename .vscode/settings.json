@@ -1,6 +1,9 @@
 {
     "cSpell.words": [
+        "IIFE",
         "Modbus",
+        "dotenv",
+        "getenv",
         "meterdata",
         "meterdatalist"
     ]

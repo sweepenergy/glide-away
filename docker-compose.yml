@@ -2,8 +2,8 @@ version: "3.8"
 
 services:
     # The Modbus TCP Server is a simple, in python written, Modbus TCP server. It listens to port 5020 and respond to any register types with a 0x0000. The Modbus registers can be also predefined with values.
-    modbus-server:
-        container_name: modbus-server
+    modbus_server:
+        container_name: modbus_server
         image: oitc/modbus-server
         restart: always
         command: -f /server_config.json
@@ -15,41 +15,35 @@ services:
               protocol: tcp
               mode: bridge
 
-    # The Modbus TCP Client is a comand line tool, written in python to read and interpret Modbus registers.
-    # modbus-client:
-    #   container_name: modbus-client
-    #   image: oitc/modbus-client
-    #   command: -s 192.168.58.70 -p 1503 -t 4 -r 0 -l 10
-
-    app:
-        container_name: app
+    glide_away_app:
+        container_name: glide_away_app
         build:
             context: ./app
             dockerfile: Dockerfile
         depends_on: 
-            - api
+            - glide_away_api
         ports:
             - target: 3000
               published: 80
               protocol: tcp
               mode: bridge
 
-    api:
-        container_name: api
+    glide_away_api:
+        container_name: glide_away_api
         build: 
             context: ./api
             dockerfile: Dockerfile
         depends_on: 
             - glide_away_admin
-            - stream
+            - glide_away_stream
         ports:
             - target: 3001
               published: 3001
               protocol: tcp
               mode: bridge
     
-    stream:
-        container_name: stream
+    glide_away_stream:
+        container_name: glide_away_stream
         build:
             context: ./stream
             dockerfile: Dockerfile
@@ -70,7 +64,7 @@ services:
             POSTGRES_PORT: 5432
             PGDATA: /var/lib/postgresql/data/
         depends_on: 
-            - modbus-server
+            - modbus_server
         ports:
             - target: 5432
               published: 45432
