@@ -1,7 +1,7 @@
 {
   "name": "api",
   "version": "1.0.0",
-  "description": "Glide Away API, that fetchs and pushes data from a modbus simulator",
+  "description": "Glide Away API, that fetches and pushes data from a modbus simulator",
   "repository": {
     "url": "https://github.com/sweepenergy/glide-away/tree/main/api"
   },
@@ -13,10 +13,8 @@
   },
   "dependencies": {
     "chalk": "^4.1.0",
+    "dotenv": "^8.2.0",
     "modbus-serial": "^8.0.1",
+    "ws": "^7.4.4",
     "pg": "^8.5.1"
-  },
-  "devDependencies": {},
-  "keywords": [],
-  "author": ""
 }
