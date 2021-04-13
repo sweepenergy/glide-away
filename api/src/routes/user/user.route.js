@@ -12,4 +12,22 @@ router
     .post(controller.updateUser)
     .delete(controller.deleteUser);
 
+router
+    .route("/auth")
+    .get(controller.getAccountInformation)
+    .post(controller.getAuthorization)
+    .put(controller.updateAccount);
+
+router
+    .route("/api_key")
+    .get(controller.getAPIKeys)
+    .post(controller.createAPIKey);
+
+router
+    .route("/api_key/:id")
+    .get(controller.getAPIKey)
+    .delete(controller.deleteAPIKey);
+
+router.route("/verify").get(controller.verifyAuthentication);
+
 module.exports = router;

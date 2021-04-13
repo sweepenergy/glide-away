@@ -45,3 +45,67 @@ exports.deleteUser = async (id) => {
         throw error;
     }
 };
+
+exports.getAuthorization = async (id) => {
+    try {
+        // TODO: Add SQL Queries here
+    } catch (error) {
+        throw error;
+    }
+};
+
+exports.getAccountInformation = async (id) => {
+    try {
+        // TODO: Add SQL Queries here
+    } catch (error) {
+        throw error;
+    }
+};
+
+exports.getAPIKeys = async (id) => {
+    try {
+        // TODO: Add SQL Queries here
+    } catch (error) {
+        throw error;
+    }
+};
+
+exports.createAPIKey = async (id) => {
+    try {
+        // TODO: Add SQL Queries here
+    } catch (error) {
+        throw error;
+    }
+};
+
+exports.deleteAPIKey = async (id) => {
+    try {
+        // TODO: Add SQL Queries here
+    } catch (error) {
+        throw error;
+    }
+};
+
+exports.verifyAuthentication = async (id) => {
+    try {
+        // TODO: Add SQL Queries here
+    } catch (error) {
+        throw error;
+    }
+};
+
+exports.getAPIKey = async (id) => {
+    try {
+        // TODO: Add SQL Queries here
+    } catch (error) {
+        throw error;
+    }
+};
+
+exports.updateAccount = async (id) => {
+    try {
+        // TODO: Add SQL Queries here
+    } catch (error) {
+        throw error;
+    }
+};

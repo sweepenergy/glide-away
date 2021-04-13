@@ -9,7 +9,7 @@ const router = express.Router();
 /**
  * GET /api/status
  */
-router.get("/status", (request, response) => response.send("ok"));
+router.get("/status", (_, response) => response.send("ok"));
 
 /**
  * GET /api/user

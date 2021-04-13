@@ -12,9 +12,8 @@ const routes = require("../src/routes");
  */
 const app = express();
 
-// parse body params and attach them to request.body
-app.use(express.json());
-app.use(express.urlencoded({ extended: false }));
+app.use(express.json()); // for parsing application/json
+app.use(express.urlencoded({ extended: false })); // for parsing application/x-www-form-urlencoded
 
 // gzip compression
 app.use(compress());
