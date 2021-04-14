@@ -1,14 +1,14 @@
 const WebSocket = require("ws");
 const Modbus = require("./modbus");
-const { endpoint, api } = require("./variables");
+const { websocket_host, api } = require("./variables");
 
 const mb = new Modbus();
 const socket = new WebSocket(
-    `${endpoint}/?auth_user=${api.key}&auth_key=${api.token}`
+    `wss://${websocket_host}/?auth_user=${api.key}&auth_key=${api.token}`
 );
 
 let modbusCounter = 1;
-socket.onopen = async (event) => {
+socket.onopen = async (_) => {
     console.info(`[Open] Sending to server`);
     await mb.connect(modbusCounter);
     await modbusCounter++;
@@ -55,7 +55,7 @@ socket.onmessage = (event) => {
                             ],
                         })
                     );
-                    console.log(`[Message] Creating a Watch Stream.`);
+                    console.info(`[Message] Creating a Watch Stream.`);
                 }
             }
         }

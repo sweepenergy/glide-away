@@ -218,7 +218,7 @@ exports.deleteAPIKey = async (request, response) => {
  */
 exports.verifyAuthentication = async (request, response) => {
     try {
-        await service.verifyAuthentication(request.get("authorization"));
+        await service.verifyAuthentication(request.get("authorization")); // TODO: untested to see if the 'a' should be capitalized or not
         return response.status(200).send("Ok");
     } catch (error) {
         return response

@@ -26,5 +26,6 @@ module.exports = {
         key: process.env.API_KEY,
         token: process.env.API_TOKEN,
     },
-    endpoint: process.env.ENDPOINT
+    websocket_host: process.env.WEB_SOCKET_HOST,
+    domain: process.env.DOMAIN
 }
