@@ -1,5 +1,6 @@
 const express = require("express");
 const axios = require("axios");
+const btoa = require("btoa");
 
 const userRoutes = require("./user/user.route");
 const directoryRoutes = require("./directory/directory.route");
@@ -27,22 +28,24 @@ router.get("/health", async (request, response) => {
         .then((response) => response.data)
         .catch((error) => error);
 
-    return data?.status === "ok" ? response.status(200).json(data) : response.status(500).send(data);
+    return data.status === "ok"
+        ? response.status(200).json(data)
+        : response.status(500).send(data);
 });
 
 /**
  * GET /api/user
  */
-router.get("/user", userRoutes);
+router.use("/user", userRoutes);
 
 /**
  * GET /api/directory
  */
-router.get("/directory", directoryRoutes);
+router.use("/directory", directoryRoutes);
 
 /**
  * GET /api/stream
  */
-router.get("/stream", streamRoutes);
+// router.use("/stream", streamRoutes);
 
 module.exports = router;

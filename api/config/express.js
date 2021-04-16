@@ -4,7 +4,7 @@ const methodOverride = require("method-override");
 const cors = require("cors");
 const helmet = require("helmet");
 
-const routes = require("../src/routes");
+const routes = require("../routes/router");
 
 /**
  * Express Instance

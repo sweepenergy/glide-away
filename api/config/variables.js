@@ -21,7 +21,8 @@ const environment = () => {
 
 module.exports = {
     env: environment(),
-    port: process.env.PORT || 5020,
+    express_port: process.env.EXPRESS_PORT || 3001,
+    modbus_port: process.env.MODBUS_PORT || 5020,
     api: {
         key: process.env.API_KEY,
         token: process.env.API_TOKEN,

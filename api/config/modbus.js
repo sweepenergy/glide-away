@@ -1,14 +1,14 @@
 const ModbusRTU = require("modbus-serial");
 
 const meterdata = require("../data/meter.json");
-const { env, port } = require("./variables");
+const { env, modbus_port } = require("./variables");
 
 /**
  * This is a simple Modbus overlay that allows us to create multiple instances of the client and open multiple streams of data
  */
 class Modbus {
     constructor() {
-        this.port = port;
+        this.port = modbus_port;
         this.client = new ModbusRTU();
         this.environment = env;
     }

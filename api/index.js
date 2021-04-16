@@ -1,13 +1,13 @@
 require("dotenv").config();
-require("./config/socket");
+// require("./config/socket");
 
 const app = require("./config/express");
-const { port, env } = require("./config/variables");
+const { express_port, env } = require("./config/variables");
 
 // listen to requests
-app.listen(port, () =>
+app.listen(express_port, () =>
     console.info(
-        `Glide Away listening for requests on port ${port} in ${env} mode!`
+        `Glide Away listening for requests on port ${express_port} in ${env} mode!`
     )
 );
 
