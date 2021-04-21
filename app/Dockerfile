@@ -1,10 +1,12 @@
 # Build the React App
 FROM node:14.1-alpine AS builder
 
+RUN apk --no-cache add nodejs yarn --repository=http://dl-cdn.alpinelinux.org/alpine/edge/community
+
 # Create directory to store app in
 WORKDIR /opt/web
-COPY package.json package-lock.json yarn.lock ./
-RUN npm install
+COPY package*.json yarn.lock ./
+RUN yarn
 
 # update path with node_modules to allow it to become accessible for later
 ENV PATH="./node_modules/.bin:$PATH"
@@ -13,7 +15,7 @@ ENV PATH="./node_modules/.bin:$PATH"
 COPY . ./
 
 # actually build the app
-RUN npm run build
+RUN yarn build
 
 
 # setup nginx to run the React app
