@@ -46,7 +46,7 @@ exports.getDirectoryLabels = async (id) => {
     }
 };
 
-exports.attachLabelToDirectory = async (id) => {
+exports.attachLabelToDirectory = async (id, data) => {
     try {
         // TODO: Add SQL Queries here
     } catch (error) {
@@ -70,7 +70,7 @@ exports.getDirectoryAlerts = async (id) => {
     }
 };
 
-exports.createDirectoryAlert = async (id) => {
+exports.createDirectoryAlert = async (id, data) => {
     try {
         // TODO: Add SQL Queries here
     } catch (error) {

@@ -46,6 +46,6 @@ router.use("/directory", directoryRoutes);
 /**
  * GET /api/stream
  */
-// router.use("/stream", streamRoutes);
+router.use("/stream", streamRoutes);
 
 module.exports = router;
