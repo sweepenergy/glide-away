@@ -1,7 +1,9 @@
 version: "3.8"
 
 services:
-    # The Modbus TCP Server is a simple, in python written, Modbus TCP server. It listens to port 5020 and respond to any register types with a 0x0000. The Modbus registers can be also predefined with values.
+    # The Modbus TCP Server is a simple, in python written, Modbus TCP server. 
+    # It listens to port 5020 and respond to any register types with a 0x0000. 
+    # The Modbus registers can be also predefined with values.
     modbus_server:
         container_name: modbus_server
         image: oitc/modbus-server
@@ -34,8 +36,7 @@ services:
             context: ./api
             dockerfile: Dockerfile
         depends_on: 
-            - glide_away_admin
-            - glide_away_stream
+            - modbus_server
         ports:
             - target: 3001
               published: 3001
@@ -48,44 +49,4 @@ services:
             context: ./stream
             dockerfile: Dockerfile
         depends_on: 
-            - glide_away_admin
-
-    glide_away_db:
-        container_name: glide_away_db
-        image: postgres:12.2-alpine
-        restart: unless-stopped
-        volumes:
-            - database-data:/var/lib/postgresql/data/
-        environment: 
-            POSTGRES_USER: docker
-            POSTGRES_PASSWORD: docker
-            POSTGRES_DB: glide_away
-            POSTGRES_HOST: localhost
-            POSTGRES_PORT: 5432
-            PGDATA: /var/lib/postgresql/data/
-        depends_on: 
             - modbus_server
-        ports:
-            - target: 5432
-              published: 45432
-              protocol: tcp
-              mode: bridge
-    
-    glide_away_admin:
-        container_name: glide_away_admin
-        image: dpage/pgadmin4
-        environment: 
-            PGADMIN_DEFAULT_EMAIL: "admin@glide.away"
-            PGADMIN_DEFAULT_PASSWORD: "password"
-        volumes:
-            - ./database.json:/pgadmin4/servers.json
-        depends_on: 
-            - glide_away_db
-        ports: 
-            - target: 80
-              published: 8080
-              protocol: tcp
-              mode: bridge
-
-volumes:
-    database-data:

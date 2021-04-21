@@ -1,6 +1,4 @@
 require("dotenv").config();
-// require("./config/socket");
-
 const app = require("./config/express");
 const { express_port, env } = require("./config/variables");
 
