@@ -6,13 +6,6 @@ const router = express.Router();
 router.route("/").get(controller.getAllUsers).post(controller.createUser);
 
 router
-    .route("/:id")
-    .get(controller.getUser)
-    .put(controller.replaceUser)
-    .post(controller.updateUser)
-    .delete(controller.deleteUser);
-
-router
     .route("/auth")
     .get(controller.getAccountInformation)
     .post(controller.getAuthorization)
@@ -29,5 +22,12 @@ router
     .delete(controller.deleteAPIKey);
 
 router.route("/verify").get(controller.verifyAuthentication);
+
+router
+    .route("/:id")
+    .get(controller.getUser)
+    .put(controller.replaceUser)
+    .post(controller.updateUser)
+    .delete(controller.deleteUser);
 
 module.exports = router;

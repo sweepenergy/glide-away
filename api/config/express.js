@@ -3,6 +3,7 @@ const compress = require("compression");
 const methodOverride = require("method-override");
 const cors = require("cors");
 const helmet = require("helmet");
+const morgan = require("morgan");
 
 const routes = require("../routes/router");
 
@@ -11,6 +12,8 @@ const routes = require("../routes/router");
  * @public
  */
 const app = express();
+
+app.use(morgan("combined"));
 
 app.use(express.json()); // for parsing application/json
 app.use(express.urlencoded({ extended: false })); // for parsing application/x-www-form-urlencoded

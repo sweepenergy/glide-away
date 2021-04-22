@@ -15,7 +15,7 @@ const router = express.Router();
  */
 router.get("/status", (_, response) => response.status(200).send("ok"));
 router.get("/health", async (request, response) => {
-    let data = await axios({
+    const data = await axios({
         method: "get",
         url: `https://${domain}/platform/healthcheck`,
         headers: {

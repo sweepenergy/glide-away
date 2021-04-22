@@ -12,7 +12,7 @@ exports.getAllUsers = async (_, response) => {
     } catch (error) {
         return response
             .status(500)
-            .send(`[User] Could not fetch list of all users.\n\t ${error}`);
+            .send(`[User] Could not fetch list of all users.\n=>    ${error}`);
     }
 };
 
@@ -32,7 +32,7 @@ exports.createUser = async (request, response) => {
     } catch (error) {
         return response
             .status(500)
-            .send(`[User] Could not create a new user.\n\t ${error}`);
+            .send(`[User] Could not create a new user.\n=>    ${error}`);
     }
 };
 
@@ -49,7 +49,7 @@ exports.getUser = async (request, response) => {
     } catch (error) {
         return response
             .status(500)
-            .send(`[User] Could not fetch user.\n\t ${error}`);
+            .send(`[User] Could not fetch user.\n=>    ${error}`);
     }
 };
 
@@ -70,7 +70,7 @@ exports.replaceUser = async (request, response) => {
     } catch (error) {
         return response
             .status(500)
-            .send(`[User] Could not replace all data in user.\n\t ${error}`);
+            .send(`[User] Could not replace all data in user.\n=>    ${error}`);
     }
 };
 
@@ -91,7 +91,9 @@ exports.updateUser = async (request, response) => {
     } catch (error) {
         return response
             .status(500)
-            .send(`[User] Could not update user's information.\n\t ${error}`);
+            .send(
+                `[User] Could not update user's information.\n=>    ${error}`
+            );
     }
 };
 
@@ -108,7 +110,7 @@ exports.deleteUser = async (request, response) => {
     } catch (error) {
         return response
             .status(500)
-            .send(`[User] Could not delete user.\n\t ${error}`);
+            .send(`[User] Could not delete user.\n=>    ${error}`);
     }
 };
 
@@ -127,7 +129,7 @@ exports.getAuthorization = async (request, response) => {
         return response
             .status(500)
             .send(
-                `[Account] Could not retrieve account authorization.\n\t ${error}`
+                `[Account] Could not retrieve account authorization.\n=>    ${error}`
             );
     }
 };
@@ -149,7 +151,7 @@ exports.getAccountInformation = async (request, response) => {
         return response
             .status(500)
             .send(
-                `[Account] Could not retrieve account information.\n\t ${error}`
+                `[Account] Could not retrieve account information.\n=>    ${error}`
             );
     }
 };
@@ -160,14 +162,14 @@ exports.getAccountInformation = async (request, response) => {
  * @return {array} All API keys
  * @error Internal Server Error
  */
-exports.getAPIKeys = async (_, response) => {
+exports.getAPIKeys = async (request, response) => {
     try {
-        const serviceResponse = await service.getAPIKeys();
+        const serviceResponse = await service.getAPIKeys(request.get("Authorization"));
         return response.status(200).json(serviceResponse);
     } catch (error) {
         return response
             .status(500)
-            .send(`[Account] Could not retrieve API keys.\n\t ${error}`);
+            .send(`[Account] Could not retrieve API keys.\n=>    ${error}`);
     }
 };
 
@@ -188,7 +190,7 @@ exports.createAPIKey = async (request, response) => {
     } catch (error) {
         return response
             .status(500)
-            .send(`[Account] Could not create a new API key.\n\t ${error}`);
+            .send(`[Account] Could not create a new API key.\n=>    ${error}`);
     }
 };
 
@@ -206,7 +208,7 @@ exports.deleteAPIKey = async (request, response) => {
     } catch (error) {
         return response
             .status(500)
-            .send(`[Account] Could not delete API key.\n\t ${error}`);
+            .send(`[Account] Could not delete API key.\n=>    ${error}`);
     }
 };
 
@@ -218,12 +220,12 @@ exports.deleteAPIKey = async (request, response) => {
  */
 exports.verifyAuthentication = async (request, response) => {
     try {
-        await service.verifyAuthentication(request.get("authorization")); // TODO: untested to see if the 'a' should be capitalized or not
+        await service.verifyAuthentication(request.get("Authorization")); // TODO: untested to see if the 'a' should be capitalized or not
         return response.status(200).send("Ok");
     } catch (error) {
         return response
             .status(500)
-            .send(`[Account] Could not verify authentication.\n\t ${error}`);
+            .send(`[Account] Could not verify authentication.\n=>    ${error}`);
     }
 };
 
@@ -241,7 +243,7 @@ exports.getAPIKey = async (request, response) => {
     } catch (error) {
         return response
             .status(500)
-            .send(`[Account] Could not retrieve API key.\n\t ${error}`);
+            .send(`[Account] Could not retrieve API key.\n=>    ${error}`);
     }
 };
 
@@ -262,7 +264,7 @@ exports.updateAccount = async (request, response) => {
         return response
             .status(500)
             .send(
-                `[Account] Could not update account information.\n\t ${error}`
+                `[Account] Could not update account information.\n=>    ${error}`
             );
     }
 };

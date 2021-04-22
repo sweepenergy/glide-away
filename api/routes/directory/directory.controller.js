@@ -14,7 +14,7 @@ exports.getDirectories = async (_, response) => {
         return response
             .status(500)
             .send(
-                `[Directory] Could not fetch list of available Directories.\n\t ${error}`
+                `[Directory] Could not fetch list of available Directories.\n=>    ${error}`
             );
     }
 };
@@ -34,7 +34,9 @@ exports.createDirectory = async (request, response) => {
     } catch (error) {
         return response
             .status(500)
-            .send(`[Directory] Could not create a new directory.\n\t ${error}`);
+            .send(
+                `[Directory] Could not create a new directory.\n=>    ${error}`
+            );
     }
 };
 
@@ -52,7 +54,7 @@ exports.getDirectory = async (request, response) => {
     } catch (error) {
         return response
             .status(500)
-            .send(`[Directory] Could not fetch directory.\n\t ${error}`);
+            .send(`[Directory] Could not fetch directory.\n=>    ${error}`);
     }
 };
 
@@ -70,7 +72,7 @@ exports.updateDirectory = async (request, response) => {
     } catch (error) {
         return response
             .status(500)
-            .send(`[Directory] Could not update directory.\n\t ${error}`);
+            .send(`[Directory] Could not update directory.\n=>    ${error}`);
     }
 };
 
@@ -88,7 +90,7 @@ exports.deleteDirectory = async (request, response) => {
     } catch (error) {
         return response
             .status(500)
-            .send(`[Directory] Could not delete directory.\n\t ${error}`);
+            .send(`[Directory] Could not delete directory.\n=>    ${error}`);
     }
 };
 
@@ -109,7 +111,7 @@ exports.getDirectoryLabels = async (request, response) => {
         return response
             .status(500)
             .send(
-                `[Directory] Could not fetch labels for given directory.\n\t ${error}`
+                `[Directory] Could not fetch labels for given directory.\n=>    ${error}`
             );
     }
 };
@@ -130,7 +132,7 @@ exports.attachLabelToDirectory = async (request, response) => {
         return response
             .status(500)
             .send(
-                `[Directory] Could not attach label to directory.\n\t ${error}`
+                `[Directory] Could not attach label to directory.\n=>    ${error}`
             );
     }
 };
@@ -154,7 +156,7 @@ exports.deleteDirectoryLabel = async (request, response) => {
         return response
             .status(500)
             .send(
-                `[Directory] Could not delete label from directory.\n\t ${error}`
+                `[Directory] Could not delete label from directory.\n=>    ${error}`
             );
     }
 };
@@ -176,7 +178,7 @@ exports.getDirectoryAlerts = async (request, response) => {
         return response
             .status(500)
             .send(
-                `[Directory] Could not fetch directory alerts.\n\t ${error}`
+                `[Directory] Could not fetch directory alerts.\n=>    ${error}`
             );
     }
 };
@@ -192,14 +194,15 @@ exports.getDirectoryAlerts = async (request, response) => {
 exports.createDirectoryAlert = async (request, response) => {
     try {
         const serviceResponse = await service.createDirectoryAlert(
-            request.params.id, request.body
+            request.params.id,
+            request.body
         );
         return response.status(201).json(serviceResponse);
     } catch (error) {
         return response
             .status(500)
             .send(
-                `[Directory] Could not create a new alert for a directory.\n\t ${error}`
+                `[Directory] Could not create a new alert for a directory.\n=>    ${error}`
             );
     }
 };
@@ -215,14 +218,15 @@ exports.createDirectoryAlert = async (request, response) => {
 exports.getDirectoryAlert = async (request, response) => {
     try {
         const serviceResponse = await service.getDirectoryAlert(
-            request.params.id, request.params.alert_id
+            request.params.id,
+            request.params.alert_id
         );
         return response.status(200).json(serviceResponse);
     } catch (error) {
         return response
             .status(500)
             .send(
-                `[Directory] Could not fetch requested alert.\n\t ${error}`
+                `[Directory] Could not fetch requested alert.\n=>    ${error}`
             );
     }
 };
@@ -238,14 +242,15 @@ exports.getDirectoryAlert = async (request, response) => {
 exports.deleteDirectoryAlert = async (request, response) => {
     try {
         await service.deleteDirectoryAlert(
-            request.params.id, request.params.alert_id
+            request.params.id,
+            request.params.alert_id
         );
-        return response.status(202).send('Accepted');
+        return response.status(202).send("Accepted");
     } catch (error) {
         return response
             .status(500)
             .send(
-                `[Directory] Could not delete alert for given directory.\n\t ${error}`
+                `[Directory] Could not delete alert for given directory.\n=>    ${error}`
             );
     }
 };
