@@ -148,8 +148,6 @@ export default function App() {
         </h1>
       </div>
 
-
-
     <div className="App">
       
       <div style={{ width: "1400px", margin:"auto", height: "500px"}}>
