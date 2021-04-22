@@ -2,6 +2,7 @@ import React from "react";
 import Avatar from "react-avatar";
 import "../styles.css";
 import { Chart } from "react-charts";
+import History from './history';
 
 export default function App() {
   const series = React.useMemo(
@@ -156,6 +157,8 @@ export default function App() {
         
       </div>
     </div>
+
+    <History />
     </main>
   );
 }

@@ -1,0 +1,32 @@
+.userinput{
+    padding-top: 15%;
+}
+.input-control {
+    width: 100%;
+    margin: auto;
+    border: none;
+    padding-bottom: 15px;
+
+}
+.input-control label{
+    font-family: courier;
+    font-weight: bold;
+    display: block;
+    color: #ff0066;
+    padding: 10px 0;
+}
+
+
+.input-control input{
+    padding: 10px;
+    border: none;
+    border-bottom: 2px grey solid;
+}
+
+.button{
+    background-color: #ff0066;
+    color: #fff;
+    font: courier;
+    padding: 10px 15px;
+    border: none;
+}
