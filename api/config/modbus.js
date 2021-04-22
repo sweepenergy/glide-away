@@ -1,28 +1,16 @@
 const ModbusRTU = require("modbus-serial");
-const chalk = require("chalk");
+
 const meterdata = require("../data/meter.json");
-const meterdatalist = Object.keys(meterdata);
+const { env, modbus_port } = require("./variables");
 
 /**
  * This is a simple Modbus overlay that allows us to create multiple instances of the client and open multiple streams of data
  */
 class Modbus {
     constructor() {
-        this.port = process.env.PORT || 5020;
+        this.port = modbus_port;
         this.client = new ModbusRTU();
-        this.environment = () => {
-            switch (process.env.NODE_ENV) {
-                case "docker":
-                    return "host.docker.internal";
-                case "prod":
-                case "production":
-                    return "some_production_url";
-                case "dev":
-                case "development":
-                default:
-                    return "localhost";
-            }
-        };
+        this.environment = env;
     }
 
     /**
@@ -38,15 +26,13 @@ class Modbus {
      */
     connect = async (id) => {
         this.client
-            .connectTCP(this.environment(), { port: this.port })
+            .connectTCP(this.environment, { port: this.port })
             .then(() =>
                 console.info(
-                    `Meter Device id: ${id} . . . TCP Protocol ` +
-                        chalk.keyword("orange")("Connected") +
-                        ` on port ${chalk.green(this.port)}\n`
+                    `Meter Device id: ${id} . . . TCP Protocol Connected on port ${this.port}`
                 )
             )
-            .catch((error) => console.error(chalk.red(error.message)));
+            .catch((error) => console.error(error.message));
         this.client.setID(id);
 
         await this.sleep(1000);
@@ -66,18 +52,13 @@ class Modbus {
                 (error, data) => {
                     if (error)
                         console.error(
-                            `Error reading holding register: ${chalk.red(
+                            `Error reading holding register: ${
                                 JSON.stringify(error)
-                            )}`
+                            }`
                         );
                     else {
                         console.info(
-                            chalk.white("Meter device id: ") +
-                                chalk.blue(this.client.getID()) +
-                                chalk.white(", reading buffer: ") +
-                                chalk.yellow(data.buffer.readFloatBE()) +
-                                chalk.white(" on serial port: ") +
-                                chalk.green(port)
+                            `Meter device id: ${this.client.getID()}, reading buffer: ${data.buffer.readFloatBE()} on serial port: ${port}`
                         );
                         return data.buffer.readFloatBE();
                     }
@@ -95,7 +76,7 @@ class Modbus {
         let bufferData = {};
 
         try {
-            await meterdatalist.map(async (meter) => {
+            await Object.keys(meterdata)?.map(async (meter) => {
                 // wait before making request due to promise
                 await this.client.readHoldingRegisters(
                     `${meterdata[meter][0]}`,
@@ -103,16 +84,13 @@ class Modbus {
                     (error, data) => {
                         if (error)
                             console.error(
-                                `Error reading holding register: ${chalk.red(
-                                    JSON.stringify(error)
+                                `Error reading holding register: ${JSON.stringify(
+                                    error
                                 )}`
                             );
                         else {
                             console.info(
-                                chalk.white.bold("Data [1099, 2]: ") +
-                                    `${chalk.blue(JSON.stringify(data))}` +
-                                    chalk.white.bold(", buffer: ") +
-                                    `${chalk.yellow(data.buffer.readFloatBE())}`
+                                `Meter device id: ${this.client.getID()}, reading buffer: ${data.buffer.readFloatBE()} on serial port: ${port}`
                             );
                         }
                         bufferData[meter] = { port, buffer };
@@ -142,7 +120,7 @@ class Modbus {
             await this.sleep(1000);
         } catch (error) {
             // if error, handle them here (it should not)
-            console.error(chalk.red(error));
+            console.error(error);
         } finally {
             // after get all data from salve repeat it again
             setImmediate(() => {

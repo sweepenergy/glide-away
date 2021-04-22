@@ -1,14 +1,19 @@
-const Modbus = require("./src/modbus");
-const meterdata = require("./data/meter.json");
-const meterdatalist = Object.keys(meterdata);
+require("dotenv").config();
+const app = require("./config/express");
+const { express_port, env } = require("./config/variables");
 
-const mb = new Modbus();
+// listen to requests
+app.listen(express_port, () =>
+    console.info(
+        `Glide Away listening for requests on port ${express_port} in ${env} mode!`
+    )
+);
 
-const main = async () => {
-    await mb.connect(1);
-    await meterdatalist.map(
-        async (meter) => await mb.read(meterdata[meter][0])
-    );
-};
+process.on("warning", (error) => console.warn(error));
 
-main();
+process.on("exit", (code) => {
+    console.error(`Exit with error code ${code}!`);
+    process.exit(code);
+});
+
+process.on("unhandledRejection", (error) => console.error(`Unhandled Rejection: ${error.message}`));
