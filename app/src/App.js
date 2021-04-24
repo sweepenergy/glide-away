@@ -6,16 +6,19 @@ import Profile from "./pages/profile";
 import Login from './pages/login';
 import Data from './pages/data';
 import Navbar from './pages/Navbar'
+import Data2 from './pages/Data2'
 
 const App = () => {
     return (
         <Router>
             <Navbar />
             <Switch>
-                <Route exact path="/" component={Home} />
-                <Route path="/profile" component={Profile} />
-                <Route path='/login' exact component={Login}/>
-                <Route path='/data' exact component={Data}/>
+                <Route exact path='/'  component={Login}/>
+                <Route path='/profile'  component={Profile}/>
+                <Route path='/data'  component={Data}/>
+                <Route path='/data2'render={() =>(
+                    <Data2 props={datas}/>
+                )}/>
             </Switch>
         </Router>
     );

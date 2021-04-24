@@ -1,6 +1,7 @@
 import React, {useState, useEffect} from 'react'
 import {Link} from 'react-router-dom'
 import './Navbar.css'
+import useDate from "./useDate";
 
 
 function Navbar() {
@@ -8,6 +9,11 @@ function Navbar() {
     const [click, setClick] = useState(false);    
     
     const url = "location.href = 'www.google.com';";
+    
+    const {time} = useDate();
+
+    
+
     
 
     return (
@@ -23,6 +29,9 @@ function Navbar() {
                         <Link className='nav-links' onClick={() => {window.location.href="https://docs.sweepapi.com"}}>
                             API
                         </Link>
+                    </li>
+                    <li className='nav-item'>
+                        {time}
                     </li>
 
                 </ul>

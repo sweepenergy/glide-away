@@ -4,10 +4,44 @@
     width: 80%;
     margin: auto;
     padding-top: 7%;
+    font-family: courier;
+    font-weight: bold;
     
 }
 
 .title {
     font: bold 30px courier;
     color:grey;
+}
+.userinput{
+    padding-top: 10%;
+}
+.input-control {
+    width: 100%;
+    margin: auto;
+    border: none;
+    padding-bottom: 35px;
+
+}
+.input-control label{
+    display: block;
+    color: #ff0066;
+    padding: 10px 0;
+}
+
+
+.input-control input{
+    padding: 10px;
+    border: none;
+    border-bottom: 2px grey solid;
+}
+
+.button{
+    background-color: #ff0066;
+    color: #fff;
+    font: bold 15px courier;
+    height: 35px;
+    padding: 5px 35px;
+    border: none;
+    border-radius: 10px;
 }
