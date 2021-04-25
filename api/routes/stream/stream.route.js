@@ -3,7 +3,7 @@ const controller = require("./stream.controller");
 
 const router = express.Router();
 
-router.route("/").post(controller.getStreams);
+router.route("/").post(controller.createStream);
 
 router
     .route("/:id")

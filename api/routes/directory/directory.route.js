@@ -8,6 +8,8 @@ router
     .get(controller.getDirectories)
     .post(controller.createDirectory);
 
+router.route("/verify").post(controller.verifyDirectorySetup);
+
 router
     .route("/:id")
     .get(controller.getDirectory)

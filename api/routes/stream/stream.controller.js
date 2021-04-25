@@ -7,14 +7,14 @@ const service = require("./stream.service");
  * @return {string} Stream Id
  * @error Internal Server Error
  */
-exports.getStreams = async (request, response) => {
+exports.createStream = async (request, response) => {
     try {
-        const serviceResponse = await service.getStreams(request.body);
+        const serviceResponse = await service.createStream(request.body);
         return response.status(201).json(serviceResponse);
     } catch (error) {
         return response
             .status(500)
-            .send(`[Directory] Could not fetch stream id.\n=>    ${error}`);
+            .send(`[Directory] Could not fetch stream id.\n\t=>    ${error}`);
     }
 };
 
@@ -32,7 +32,7 @@ exports.getStream = async (request, response) => {
     } catch (error) {
         return response
             .status(500)
-            .send(`[Directory] Could not fetch stream data.\n=>    ${error}`);
+            .send(`[Directory] Could not fetch stream data.\n\t=>    ${error}`);
     }
 };
 
@@ -52,7 +52,7 @@ exports.updateStream = async (request, response) => {
     } catch (error) {
         return response
             .status(500)
-            .send(`[Directory] Could not update stream.\n=>    ${error}`);
+            .send(`[Directory] Could not update stream.\n\t=>    ${error}`);
     }
 };
 
@@ -70,7 +70,7 @@ exports.deleteStream = async (request, response) => {
     } catch (error) {
         return response
             .status(500)
-            .send(`[Directory] Could not delete stream.\n=>    ${error}`);
+            .send(`[Directory] Could not delete stream.\n\t=>    ${error}`);
     }
 };
 
@@ -90,7 +90,7 @@ exports.getStreamLabels = async (request, response) => {
     } catch (error) {
         return response
             .status(500)
-            .send(`[Directory] Could not fetch stream labels.\n=>    ${error}`);
+            .send(`[Directory] Could not fetch stream labels.\n\t=>    ${error}`);
     }
 };
 
@@ -109,7 +109,7 @@ exports.createStreamLabel = async (request, response) => {
     } catch (error) {
         return response
             .status(500)
-            .send(`[Directory] Could not create stream label.\n=>    ${error}`);
+            .send(`[Directory] Could not create stream label.\n\t=>    ${error}`);
     }
 };
 
@@ -131,7 +131,7 @@ exports.deleteStreamLabel = async (request, response) => {
     } catch (error) {
         return response
             .status(500)
-            .send(`[Directory] Could not delete stream label.\n=>    ${error}`);
+            .send(`[Directory] Could not delete stream label.\n\t=>    ${error}`);
     }
 };
 
@@ -151,7 +151,7 @@ exports.getStreamAlerts = async (request, response) => {
     } catch (error) {
         return response
             .status(500)
-            .send(`[Directory] Could not fetch all alerts.\n=>    ${error}`);
+            .send(`[Directory] Could not fetch all alerts.\n\t=>    ${error}`);
     }
 };
 
@@ -174,7 +174,7 @@ exports.deleteStreamAlert = async (request, response) => {
         return response
             .status(500)
             .send(
-                `[Directory] Could not delete specific alert.\n=>    ${error}`
+                `[Directory] Could not delete specific alert.\n\t=>    ${error}`
             );
     }
 };
@@ -198,7 +198,7 @@ exports.createTimeSeries = async (request, response) => {
         return response
             .status(500)
             .send(
-                `[Directory] Could not create a new series of time.\n=>    ${error}`
+                `[Directory] Could not create a new series of time.\n\t=>    ${error}`
             );
     }
 };
@@ -224,7 +224,7 @@ exports.updateTimeSeries = async (request, response) => {
         return response
             .status(500)
             .send(
-                `[Directory] Could not update time series information.\n=>    ${error}`
+                `[Directory] Could not update time series information.\n\t=>    ${error}`
             );
     }
 };
@@ -248,7 +248,7 @@ exports.deleteTimeSeries = async (request, response) => {
         return response
             .status(500)
             .send(
-                `[Directory] Could not delete time series stream.\n=>    ${error}`
+                `[Directory] Could not delete time series stream.\n\t=>    ${error}`
             );
     }
 };
@@ -286,7 +286,7 @@ exports.getTimeSeriesDatasets = async (request, response) => {
         return response
             .status(500)
             .send(
-                `[Directory] Could not fetch dataset for time series stream.\n=>    ${error}`
+                `[Directory] Could not fetch dataset for time series stream.\n\t=>    ${error}`
             );
     }
 };
@@ -312,7 +312,7 @@ exports.createTimeSeriesDataset = async (request, response) => {
         return response
             .status(500)
             .send(
-                `[Directory] Could not insert time series data.\n=>    ${error}`
+                `[Directory] Could not insert time series data.\n\t=>    ${error}`
             );
     }
 };
@@ -336,7 +336,7 @@ exports.getTimeSeriesLabels = async (request, response) => {
         return response
             .status(500)
             .send(
-                `[Directory] Could not fetch time series labels.\n=>    ${error}`
+                `[Directory] Could not fetch time series labels.\n\t=>    ${error}`
             );
     }
 };
@@ -362,7 +362,7 @@ exports.createTimeSeriesLabel = async (request, response) => {
         return response
             .status(500)
             .send(
-                `[Directory] Could not create a new time series label.\n=>    ${error}`
+                `[Directory] Could not create a new time series label.\n\t=>    ${error}`
             );
     }
 };
@@ -387,7 +387,7 @@ exports.deleteTimeSeriesLabel = async (request, response) => {
     } catch (error) {
         return response
             .status(500)
-            .send(`[Directory] Could not delete label.\n=>    ${error}`);
+            .send(`[Directory] Could not delete label.\n\t=>    ${error}`);
     }
 };
 
@@ -410,7 +410,7 @@ exports.getTimeSeriesAlerts = async (request, response) => {
         return response
             .status(500)
             .send(
-                `[Directory] Could not fetch requested alert.\n=>    ${error}`
+                `[Directory] Could not fetch requested alert.\n\t=>    ${error}`
             );
     }
 };
@@ -436,7 +436,7 @@ exports.createTimeSeriesAlert = async (request, response) => {
         return response
             .status(500)
             .send(
-                `[Directory] Could not create new alert event.\n=>    ${error}`
+                `[Directory] Could not create new alert event.\n\t=>    ${error}`
             );
     }
 };
@@ -460,7 +460,7 @@ exports.updateTimeSeriesAlert = async (request, response) => {
     } catch (error) {
         return response
             .status(500)
-            .send(`[Directory] Could not update alert data.\n=>    ${error}`);
+            .send(`[Directory] Could not update alert data.\n\t=>    ${error}`);
     }
 };
 
@@ -485,7 +485,7 @@ exports.getTimeSeriesAlert = async (request, response) => {
         return response
             .status(500)
             .send(
-                `[Directory] Could not fetch requested alert.\n=>    ${error}`
+                `[Directory] Could not fetch requested alert.\n\t=>    ${error}`
             );
     }
 };
@@ -511,7 +511,7 @@ exports.deleteTimeSeriesAlert = async (request, response) => {
         return response
             .status(500)
             .send(
-                `[Directory] Could not delete requested alert.\n=>    ${error}`
+                `[Directory] Could not delete requested alert.\n\t=>    ${error}`
             );
     }
 };
@@ -545,7 +545,7 @@ exports.getTimeSeriesDatasetLabels = async (request, response) => {
         return response
             .status(500)
             .send(
-                `[Directory] Could not fetch requested dataset labels.\n=>    ${error}`
+                `[Directory] Could not fetch requested dataset labels.\n\t=>    ${error}`
             );
     }
 };
@@ -573,7 +573,7 @@ exports.createTimeSeriesDatasetLabel = async (request, response) => {
         return response
             .status(500)
             .send(
-                `[Directory] Could not create label for dataset.\n=>    ${error}`
+                `[Directory] Could not create label for dataset.\n\t=>    ${error}`
             );
     }
 };
@@ -609,7 +609,7 @@ exports.getTimeSeriesDatasetLabel = async (request, response) => {
         return response
             .status(500)
             .send(
-                `[Directory] Could not fetch requested dataset label.\n=>    ${error}`
+                `[Directory] Could not fetch requested dataset label.\n\t=>    ${error}`
             );
     }
 };

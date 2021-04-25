@@ -4,7 +4,7 @@ const { domain } = require("../../config/variables");
 
 exports.getAllUsers = async () => {
     try {
-        // TODO: Add SQL Queries here
+        return { msg: "test" };
     } catch (error) {
         throw error;
     }
@@ -12,7 +12,6 @@ exports.getAllUsers = async () => {
 
 exports.createUser = async (data) => {
     try {
-        // TODO: Add SQL Queries here
     } catch (error) {
         throw error;
     }
@@ -20,7 +19,6 @@ exports.createUser = async (data) => {
 
 exports.getUser = async (id) => {
     try {
-        // TODO: Add SQL Queries here
     } catch (error) {
         throw error;
     }
@@ -28,7 +26,6 @@ exports.getUser = async (id) => {
 
 exports.replaceUser = async (id, data) => {
     try {
-        // TODO: Add SQL Queries here
     } catch (error) {
         throw error;
     }
@@ -36,7 +33,6 @@ exports.replaceUser = async (id, data) => {
 
 exports.updateUser = async (id, data) => {
     try {
-        // TODO: Add SQL Queries here
     } catch (error) {
         throw error;
     }
@@ -44,15 +40,14 @@ exports.updateUser = async (id, data) => {
 
 exports.deleteUser = async (id) => {
     try {
-        // TODO: Add SQL Queries here
     } catch (error) {
         throw error;
     }
 };
 
-exports.getAuthorization = async (data) => {
-    try {
-        return await axios({
+exports.getAuthorization = (data) =>
+    new Promise((resolve, reject) => {
+        axios({
             method: "post",
             url: `https://${domain}/account/auth`,
             headers: {
@@ -60,26 +55,20 @@ exports.getAuthorization = async (data) => {
             },
             data,
         })
-            .then((response) => parser.filterStatus(response.data))
-            .catch((error) => {
-                throw error;
-            });
-    } catch (error) {
-        throw error;
-    }
-};
+            .then((response) => resolve(parser.filterStatus(response.data)))
+            .catch((error) => reject(error));
+    });
 
 exports.getAccountInformation = async (schema) => {
     try {
-        // TODO: Add SQL Queries here
     } catch (error) {
         throw error;
     }
 };
 
-exports.getAPIKeys = async (auth) => {
-    try {
-        let response = await axios({
+exports.getAPIKeys = (auth) =>
+    new Promise(async (resolve, reject) => {
+        const response = await axios({
             method: "get",
             url: `https://${domain}/account/auth/api_key`,
             headers: {
@@ -87,9 +76,7 @@ exports.getAPIKeys = async (auth) => {
             },
         })
             .then((response) => parser.filterStatus(response.data))
-            .catch((error) => {
-                throw error;
-            });
+            .catch((error) => reject(error));
 
         const apiKey = response.active.filter(
             (key) =>
@@ -101,39 +88,58 @@ exports.getAPIKeys = async (auth) => {
                 key.scope.global.includes("delete")
         )[0];
 
-        return { api_key: apiKey.api_key, api_token: apiKey.session_token_ref };
-    } catch (error) {
-        throw error;
-    }
-};
+        resolve({
+            api_key: apiKey.api_key,
+            api_token: apiKey.session_token_ref,
+        });
+    });
 
-exports.createAPIKey = async (data) => {
-    try {
-        // TODO: Add SQL Queries here
-    } catch (error) {
-        throw error;
-    }
-};
+exports.createAPIKey = (auth) =>
+    new Promise(async (resolve, reject) => {
+        const response = await axios({
+            method: "post",
+            url: `https://${domain}/account/auth/api_key`,
+            headers: {
+                Authorization: auth,
+            },
+            data: {
+                global_auth: ["get", "put", "post", "delete"],
+                local_auth: [],
+                ttl: "",
+                name: "Glide Away",
+            },
+        })
+            .then((response) => parser.filterStatus(response.data))
+            .catch((error) => reject(error));
+
+        resolve({
+            api_key: response.session_api_id,
+            api_token: response.session_api_token,
+        });
+    });
 
 exports.deleteAPIKey = async (id) => {
     try {
-        // TODO: Add SQL Queries here
     } catch (error) {
         throw error;
     }
 };
 
-exports.verifyAuthentication = async (auth) => {
-    try {
-        // TODO: Add SQL Queries here
-    } catch (error) {
-        throw error;
-    }
-};
+exports.verifyAuthentication = (auth) =>
+    new Promise((resolve, reject) => {
+        axios({
+            method: "get",
+            url: `https://${domain}/account/verify_auth`,
+            headers: {
+                Authorization: auth,
+            },
+        })
+            .then((response) => resolve(response.data))
+            .catch((error) => reject(error));
+    });
 
 exports.getAPIKey = async (id) => {
     try {
-        // TODO: Add SQL Queries here
     } catch (error) {
         throw error;
     }
@@ -141,7 +147,6 @@ exports.getAPIKey = async (id) => {
 
 exports.updateAccount = async (id) => {
     try {
-        // TODO: Add SQL Queries here
     } catch (error) {
         throw error;
     }

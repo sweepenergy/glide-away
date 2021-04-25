@@ -9,7 +9,8 @@
   "license": "MIT",
   "scripts": {
     "start": "node index.js",
-    "docker": "NODE_ENV=docker node index.js"
+    "docker": "NODE_ENV=docker node index.js",
+    "debug": "node --async-stack-traces index.js"
   },
   "dependencies": {
     "axios": "^0.21.1",

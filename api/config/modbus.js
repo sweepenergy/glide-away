@@ -7,6 +7,9 @@ const { env, modbus_port } = require("./variables");
  * This is a simple Modbus overlay that allows us to create multiple instances of the client and open multiple streams of data
  */
  class Modbus {
+     /**
+      * @param {object} options - {port, environment}
+      */
 	constructor(options) {
 		this.port = options.port || modbus_port;
 		this.client = new ModbusRTU();
@@ -100,6 +103,7 @@ const { env, modbus_port } = require("./variables");
 			// output value to console
 			const response = await this.readAll();
 			console.table(response);
+            // TODO: send response data to directory that needs to be passed in
 			// wait 1000ms before get another device
 			await this.sleep(1000);
 		} catch (error) {

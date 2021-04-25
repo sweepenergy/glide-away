@@ -1,4 +1,6 @@
 exports.filterStatus = (obj) => {
+    if (obj.status !== "ok") return obj;
+    
     return Object.keys(obj)
         .filter((key) => key !== "status")
         .reduce((o, key) => {

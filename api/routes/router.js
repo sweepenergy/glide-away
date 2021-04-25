@@ -5,6 +5,7 @@ const btoa = require("btoa");
 const userRoutes = require("./user/user.route");
 const directoryRoutes = require("./directory/directory.route");
 const streamRoutes = require("./stream/stream.route");
+const modbusRoutes = require("./modbus/modbus.route");
 const { domain } = require("../config/variables");
 
 const router = express.Router();
@@ -47,5 +48,10 @@ router.use("/directory", directoryRoutes);
  * GET /api/stream
  */
 router.use("/stream", streamRoutes);
+
+/**
+ * GET /api/modbus
+ */
+router.use("/modbus", modbusRoutes);
 
 module.exports = router;

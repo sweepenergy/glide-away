@@ -3,8 +3,11 @@
         "IIFE",
         "Modbus",
         "dotenv",
+        "fontawesome",
+        "fortawesome",
         "getenv",
         "meterdata",
-        "meterdatalist"
+        "meterdatalist",
+        "unitless"
     ]
 }
