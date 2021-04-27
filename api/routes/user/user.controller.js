@@ -5,16 +5,23 @@ const service = require("./user.service");
  * @return {object} User data
  * @error Internal Server Error
  */
-exports.getAllUsers = async (_, response) => {
-    try {
-        const serviceResponse = await service.getAllUsers();
-        return response.status(200).json(serviceResponse);
-    } catch (error) {
-        return response
-            .status(500)
-            .send(`[User] Could not fetch list of all users.\n=>    ${error}`);
-    }
-};
+exports.getAllUsers = (_, response) =>
+    new Promise((resolve, reject) => {
+        service
+            .getAllUsers()
+            .then((serviceResponse) =>
+                resolve(response.status(200).json(serviceResponse))
+            )
+            .catch((error) =>
+                reject(
+                    response
+                        .status(500)
+                        .send(
+                            `[User] Could not fetch list of all users.\n\t=>    ${error}`
+                        )
+                )
+            );
+    });
 
 /**
  * Create a new user
@@ -25,16 +32,21 @@ exports.getAllUsers = async (_, response) => {
  * @return {string} Status
  * @error Internal Server Error
  */
-exports.createUser = async (request, response) => {
-    try {
-        await service.createUser(request.body);
-        return response.status(201).send("Ok");
-    } catch (error) {
-        return response
-            .status(500)
-            .send(`[User] Could not create a new user.\n=>    ${error}`);
-    }
-};
+exports.createUser = (request, response) =>
+    new Promise((resolve, reject) => {
+        service
+            .createUser(request.body)
+            .then((_) => resolve(response.status(201).send("Ok")))
+            .catch((error) =>
+                reject(
+                    response
+                        .status(500)
+                        .send(
+                            `[User] Could not create a new user.\n\t=>    ${error}`
+                        )
+                )
+            );
+    });
 
 /**
  * Get user based on user id in the Glide Away Database
@@ -42,16 +54,21 @@ exports.createUser = async (request, response) => {
  * @return {array} List of Users
  * @error Internal Server Error
  */
-exports.getUser = async (request, response) => {
-    try {
-        const serviceResponse = await service.getUser(request.query.id);
-        return response.status(200).json(serviceResponse);
-    } catch (error) {
-        return response
-            .status(500)
-            .send(`[User] Could not fetch user.\n=>    ${error}`);
-    }
-};
+exports.getUser = (request, response) =>
+    new Promise((resolve, reject) => {
+        service
+            .getUser(request.query.id)
+            .then((serviceResponse) =>
+                resolve(response.status(200).json(serviceResponse))
+            )
+            .catch((error) =>
+                reject(
+                    response
+                        .status(500)
+                        .send(`[User] Could not fetch user.\n\t=>    ${error}`)
+                )
+            );
+    });
 
 /**
  * Replace all the data on a given user with the new data
@@ -63,16 +80,21 @@ exports.getUser = async (request, response) => {
  * @return {string} Status
  * @error Internal Server Error
  */
-exports.replaceUser = async (request, response) => {
-    try {
-        await service.replaceUser(request.query.id, request.body);
-        return response.status(201).send("Replaced");
-    } catch (error) {
-        return response
-            .status(500)
-            .send(`[User] Could not replace all data in user.\n=>    ${error}`);
-    }
-};
+exports.replaceUser = (request, response) =>
+    new Promise((resolve, reject) => {
+        service
+            .replaceUser(request.query.id, request.body)
+            .then((_) => resolve(response.status(201).send("Replaced")))
+            .catch((error) =>
+                reject(
+                    response
+                        .status(500)
+                        .send(
+                            `[User] Could not replace all data in user.\n\t=>    ${error}`
+                        )
+                )
+            );
+    });
 
 /**
  * Update only specific fields of a given user
@@ -84,18 +106,21 @@ exports.replaceUser = async (request, response) => {
  * @return {string} Status
  * @error Internal Server Error
  */
-exports.updateUser = async (request, response) => {
-    try {
-        await service.updateUser(request.query.id, request.body);
-        return response.status(201).send("Created");
-    } catch (error) {
-        return response
-            .status(500)
-            .send(
-                `[User] Could not update user's information.\n=>    ${error}`
+exports.updateUser = (request, response) =>
+    new Promise((resolve, reject) => {
+        service
+            .updateUser(request.query.id, request.body)
+            .then((_) => resolve(response.status(201).send("Created")))
+            .catch((error) =>
+                reject(
+                    response
+                        .status(500)
+                        .send(
+                            `[User] Could not update user's information.\n\t=>    ${error}`
+                        )
+                )
             );
-    }
-};
+    });
 
 /**
  * Delete all data associated with a given user
@@ -103,16 +128,19 @@ exports.updateUser = async (request, response) => {
  * @return {string} Status
  * @error Internal Server Error
  */
-exports.deleteUser = async (request, response) => {
-    try {
-        await service.deleteUser(request.query.id);
-        return response.status(202).send("Accepted");
-    } catch (error) {
-        return response
-            .status(500)
-            .send(`[User] Could not delete user.\n=>    ${error}`);
-    }
-};
+exports.deleteUser = (request, response) =>
+    new Promise((resolve, reject) => {
+        service
+            .deleteUser(request.query.id)
+            .then((_) => resolve(response.status(202).send("Accepted")))
+            .catch((error) =>
+                reject(
+                    response
+                        .status(500)
+                        .send(`[User] Could not delete user.\n\t=>    ${error}`)
+                )
+            );
+    });
 
 /**
  * Get Account Authorization
@@ -121,18 +149,23 @@ exports.deleteUser = async (request, response) => {
  * @return {object} Authorization
  * @error Internal Server Error
  */
-exports.getAuthorization = async (request, response) => {
-    try {
-        const serviceResponse = await service.getAuthorization(request.body);
-        return response.status(201).json(serviceResponse);
-    } catch (error) {
-        return response
-            .status(500)
-            .send(
-                `[Account] Could not retrieve account authorization.\n=>    ${error}`
+exports.getAuthorization = (request, response) =>
+    new Promise((resolve, reject) => {
+        service
+            .getAuthorization(request.body)
+            .then((serviceResponse) =>
+                resolve(response.status(201).json(serviceResponse))
+            )
+            .catch((error) =>
+                reject(
+                    response
+                        .status(500)
+                        .send(
+                            `[Account] Could not retrieve account authorization.\n\t=>    ${error}`
+                        )
+                )
             );
-    }
-};
+    });
 
 /**
  * Get account information
@@ -141,20 +174,23 @@ exports.getAuthorization = async (request, response) => {
  * @return {object} Account information
  * @error Internal Server Error
  */
-exports.getAccountInformation = async (request, response) => {
-    try {
-        const serviceResponse = await service.getAccountInformation(
-            request.query.schema
-        );
-        return response.status(200).json(serviceResponse);
-    } catch (error) {
-        return response
-            .status(500)
-            .send(
-                `[Account] Could not retrieve account information.\n=>    ${error}`
+exports.getAccountInformation = (request, response) =>
+    new Promise((resolve, reject) => {
+        service
+            .getAccountInformation(request.query.schema)
+            .then((serviceResponse) =>
+                resolve(response.status(200).json(serviceResponse))
+            )
+            .catch((error) =>
+                reject(
+                    response
+                        .status(500)
+                        .send(
+                            `[Account] Could not retrieve account information.\n\t=>    ${error}`
+                        )
+                )
             );
-    }
-};
+    });
 
 /**
  * Get all generated API keys
@@ -162,16 +198,23 @@ exports.getAccountInformation = async (request, response) => {
  * @return {array} All API keys
  * @error Internal Server Error
  */
-exports.getAPIKeys = async (request, response) => {
-    try {
-        const serviceResponse = await service.getAPIKeys(request.get("Authorization"));
-        return response.status(200).json(serviceResponse);
-    } catch (error) {
-        return response
-            .status(500)
-            .send(`[Account] Could not retrieve API keys.\n=>    ${error}`);
-    }
-};
+exports.getAPIKeys = (request, response) =>
+    new Promise((resolve, reject) => {
+        service
+            .getAPIKeys(request.get("Authorization"))
+            .then((serviceResponse) =>
+                resolve(response.status(200).json(serviceResponse))
+            )
+            .catch((error) =>
+                reject(
+                    response
+                        .status(500)
+                        .send(
+                            `[Account] Could not retrieve API keys.\n\t=>    ${error}`
+                        )
+                )
+            );
+    });
 
 /**
  * Create a new API Key
@@ -183,16 +226,23 @@ exports.getAPIKeys = async (request, response) => {
  * @return {object} API Key
  * @error Internal Server Error
  */
-exports.createAPIKey = async (request, response) => {
-    try {
-        const serviceResponse = await service.createAPIKey(request.body);
-        return response.status(201).json(serviceResponse);
-    } catch (error) {
-        return response
-            .status(500)
-            .send(`[Account] Could not create a new API key.\n=>    ${error}`);
-    }
-};
+exports.createAPIKey = (request, response) =>
+    new Promise((resolve, reject) => {
+        service
+            .createAPIKey(request.get("Authorization"))
+            .then((serviceResponse) =>
+                resolve(response.status(201).json(serviceResponse))
+            )
+            .catch((error) =>
+                reject(
+                    response
+                        .status(500)
+                        .send(
+                            `[Account] Could not create a new API key.\n\t=>    ${error}`
+                        )
+                )
+            );
+    });
 
 /**
  * Delete an API Key
@@ -201,16 +251,21 @@ exports.createAPIKey = async (request, response) => {
  * @return {string} Status
  * @error Internal Server Error
  */
-exports.deleteAPIKey = async (request, response) => {
-    try {
-        await service.deleteAPIKey(request.params[0]);
-        return response.status(202).send("Accepted");
-    } catch (error) {
-        return response
-            .status(500)
-            .send(`[Account] Could not delete API key.\n=>    ${error}`);
-    }
-};
+exports.deleteAPIKey = (request, response) =>
+    new Promise((resolve, reject) => {
+        service
+            .deleteAPIKey(request.params[0])
+            .then((_) => resolve(response.status(202).send("Accepted")))
+            .catch((error) =>
+                reject(
+                    response
+                        .status(500)
+                        .send(
+                            `[Account] Could not delete API key.\n\t=>    ${error}`
+                        )
+                )
+            );
+    });
 
 /**
  * Verify Authentication
@@ -218,16 +273,21 @@ exports.deleteAPIKey = async (request, response) => {
  * @return {string} Status
  * @error Internal Server Error
  */
-exports.verifyAuthentication = async (request, response) => {
-    try {
-        await service.verifyAuthentication(request.get("Authorization")); // TODO: untested to see if the 'a' should be capitalized or not
-        return response.status(200).send("Ok");
-    } catch (error) {
-        return response
-            .status(500)
-            .send(`[Account] Could not verify authentication.\n=>    ${error}`);
-    }
-};
+exports.verifyAuthentication = (request, response) =>
+    new Promise((resolve, reject) => {
+        service
+            .verifyAuthentication(request.get("Authorization"))
+            .then((_) => resolve(response.status(200).send("Ok")))
+            .catch((error) =>
+                reject(
+                    response
+                        .status(500)
+                        .send(
+                            `[Account] Could not verify authentication.\n\t=>    ${error}`
+                        )
+                )
+            );
+    });
 
 /**
  * Get API Key
@@ -236,16 +296,23 @@ exports.verifyAuthentication = async (request, response) => {
  * @return {object} API Key
  * @error Internal Server Error
  */
-exports.getAPIKey = async (request, response) => {
-    try {
-        const serviceResponse = await service.getAPIKey(request.params[0]);
-        return response.status(200).json(serviceResponse);
-    } catch (error) {
-        return response
-            .status(500)
-            .send(`[Account] Could not retrieve API key.\n=>    ${error}`);
-    }
-};
+exports.getAPIKey = (request, response) =>
+    new Promise((resolve, reject) => {
+        service
+            .getAPIKey(request.params[0])
+            .then((serviceResponse) =>
+                resolve(response.status(200).json(serviceResponse))
+            )
+            .catch((error) =>
+                reject(
+                    response
+                        .status(500)
+                        .send(
+                            `[Account] Could not retrieve API key.\n\t=>    ${error}`
+                        )
+                )
+            );
+    });
 
 /**
  * Update account information
@@ -256,15 +323,18 @@ exports.getAPIKey = async (request, response) => {
  * @return {string} Status
  * @error Internal Server Error
  */
-exports.updateAccount = async (request, response) => {
-    try {
-        await service.updateAccount(request.query.id);
-        return response.status(201).send("Updated");
-    } catch (error) {
-        return response
-            .status(500)
-            .send(
-                `[Account] Could not update account information.\n=>    ${error}`
+exports.updateAccount = (request, response) =>
+    new Promise((resolve, reject) => {
+        service
+            .updateAccount(request.query.id)
+            .then((_) => resolve(response.status(201).send("Updated")))
+            .catch((error) =>
+                reject(
+                    response
+                        .status(500)
+                        .send(
+                            `[Account] Could not update account information.\n\t=>    ${error}`
+                        )
+                )
             );
-    }
-};
+    });

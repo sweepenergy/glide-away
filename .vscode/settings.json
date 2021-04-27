@@ -2,9 +2,13 @@
     "cSpell.words": [
         "IIFE",
         "Modbus",
+        "dirtop",
         "dotenv",
+        "fontawesome",
+        "fortawesome",
         "getenv",
         "meterdata",
-        "meterdatalist"
+        "meterdatalist",
+        "unitless"
     ]
 }

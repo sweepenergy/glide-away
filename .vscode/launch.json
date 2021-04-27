@@ -9,10 +9,11 @@
 			"request": "launch",
 			"name": "glide_away",
 			"skipFiles": ["!**/node_modules/**", "<node_internals>/**"],
-			"runtimeArgs": ["run-script", "start"],
+			"runtimeArgs": ["run-script", "debug"],
 			"runtimeExecutable": "npm",
 			"cwd": "${workspaceFolder}/api",
-			"envFile": "${workspaceFolder}/api/.env"
+			"envFile": "${workspaceFolder}/api/.env",
+			"smartStep": true
 		}
 	]
 }
