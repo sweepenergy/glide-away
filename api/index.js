@@ -13,7 +13,7 @@ process.on("warning", (error) => console.warn(error));
 
 process.on("exit", (code) => {
     console.error(`Exit with error code ${code}!`);
-    process.exit(code);
+    // process.exit(code);
 });
 
 process.on("unhandledRejection", (error) =>

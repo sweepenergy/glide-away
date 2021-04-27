@@ -37,7 +37,7 @@
     {
         "var_name": "va_3_total",
         "display_name": "Va 3 Total",
-        "description": "Vol Ampere",
+        "description": "Volt Ampere",
         "units": "va",
         "type": "number"
     },

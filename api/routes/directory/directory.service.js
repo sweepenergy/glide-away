@@ -1,6 +1,6 @@
 const axios = require("axios");
 const parser = require("../../utils/parser");
-const { domain } = require("../../config/variables");
+const { sweep_api } = require("../../config/variables");
 
 exports.getDirectories = async () => {
     try {
@@ -23,7 +23,7 @@ exports.verifyDirectorySetup = (auth) =>
         // Get all directories
         let directories = await axios({
             method: "get",
-            url: `https://${domain}/directory/home`,
+            url: `${sweep_api}/directory/home`,
             headers: {
                 Authorization: auth,
             },
@@ -54,7 +54,7 @@ exports.verifyDirectorySetup = (auth) =>
         if (!hasModbusDirectory) {
             modbusResponse = await axios({
                 method: "post",
-                url: `https://${domain}/directory`,
+                url: `${sweep_api}/directory`,
                 headers: {
                     Authorization: auth,
                 },
@@ -72,14 +72,14 @@ exports.verifyDirectorySetup = (auth) =>
             let hasModbusStream = false;
             modbusResponse = await axios({
                 method: "get",
-                url: `https://${domain}/directory/${modbusResponse.id}`,
+                url: `${sweep_api}/directory/${modbusResponse.id}`,
                 headers: {
                     Authorization: auth,
                 },
             })
                 .then((response) => parser.filterStatus(response.data))
                 .catch((error) => reject(error));
-            console.log(modbusResponse);
+            
             modbusResponse.stream.map((s) => {
                 if (s.name === "Devices") hasModbusStream = true;
             });
@@ -87,7 +87,7 @@ exports.verifyDirectorySetup = (auth) =>
             if (!hasModbusStream) {
                 await axios({
                     method: "post",
-                    url: `https://${domain}/stream`,
+                    url: `${sweep_api}/stream`,
                     headers: {
                         Authorization: auth,
                     },
@@ -133,12 +133,12 @@ exports.verifyDirectorySetup = (auth) =>
         if (!hasSensorsDirectory) {
             sensorsResponse = await axios({
                 method: "post",
-                url: `https://${domain}/directory`,
+                url: `${sweep_api}/directory`,
                 headers: {
                     Authorization: auth,
                 },
                 data: {
-                    name: "Senors",
+                    name: "Sensors",
                     top_dir: "",
                 },
             })
@@ -150,7 +150,7 @@ exports.verifyDirectorySetup = (auth) =>
         if (modbusResponse !== {} && sensorsResponse !== {}) {
             directories = await axios({
                 method: "get",
-                url: `https://${domain}/directory/home`,
+                url: `${sweep_api}/directory/home`,
                 headers: {
                     Authorization: auth,
                 },
@@ -170,7 +170,7 @@ exports.getDirectory = (id, auth) =>
     new Promise((resolve, reject) => {
         axios({
             method: "get",
-            url: `https://${domain}/directory/${id}`,
+            url: `${sweep_api}/directory/${id}`,
             headers: {
                 Authorization: auth,
             },

@@ -1,6 +1,6 @@
 const axios = require("axios");
 const parser = require("../../utils/parser");
-const { domain } = require("../../config/variables");
+const { sweep_api } = require("../../config/variables");
 const inputDataVar = require("../../data/stream.json");
 
 exports.createStream = async (data) => {
@@ -8,7 +8,7 @@ exports.createStream = async (data) => {
         // Get Directory Information
         const directoryName = await axios({
             method: "get",
-            url: `https://${domain}/directory/${data.directory_id}`,
+            url: `${sweep_api}/directory/${data.directory_id}`,
             headers: {
                 Authorization: auth,
             },
@@ -22,7 +22,7 @@ exports.createStream = async (data) => {
         // Create a new stream
         return await axios({
             method: "post",
-            url: `https://${domain}/stream`,
+            url: `${sweep_api}/stream`,
             headers: {
                 Authorization: auth,
             },
@@ -41,17 +41,21 @@ exports.createStream = async (data) => {
     }
 };
 
-exports.getStream = async (id) => {
-    try {
-        
-    } catch (error) {
-        throw error;
-    }
-};
+exports.getStream = (id, auth) =>
+    new Promise((resolve, reject) => {
+        axios({
+            method: "get",
+            url: `${sweep_api}/stream/${id}`,
+            headers: {
+                Authorization: auth,
+            },
+        })
+            .then((response) => resolve(parser.filterStatus(response.data)))
+            .catch((error) => reject(error));
+    });
 
 exports.updateStream = async (id, body) => {
     try {
-        
     } catch (error) {
         throw error;
     }
@@ -59,7 +63,6 @@ exports.updateStream = async (id, body) => {
 
 exports.deleteStream = async (id) => {
     try {
-        
     } catch (error) {
         throw error;
     }
@@ -67,7 +70,6 @@ exports.deleteStream = async (id) => {
 
 exports.getStreamLabels = async (id) => {
     try {
-        
     } catch (error) {
         throw error;
     }
@@ -75,7 +77,6 @@ exports.getStreamLabels = async (id) => {
 
 exports.createStreamLabel = async (id, data) => {
     try {
-        
     } catch (error) {
         throw error;
     }
@@ -83,7 +84,6 @@ exports.createStreamLabel = async (id, data) => {
 
 exports.deleteStreamLabel = async (id, labelId) => {
     try {
-        
     } catch (error) {
         throw error;
     }
@@ -91,7 +91,6 @@ exports.deleteStreamLabel = async (id, labelId) => {
 
 exports.getStreamAlerts = async (id) => {
     try {
-        
     } catch (error) {
         throw error;
     }
@@ -99,7 +98,6 @@ exports.getStreamAlerts = async (id) => {
 
 exports.deleteStreamAlert = async (id, alertId) => {
     try {
-        
     } catch (error) {
         throw error;
     }
@@ -107,7 +105,6 @@ exports.deleteStreamAlert = async (id, alertId) => {
 
 exports.createTimeSeries = async (id, data) => {
     try {
-        
     } catch (error) {
         throw error;
     }
@@ -115,7 +112,6 @@ exports.createTimeSeries = async (id, data) => {
 
 exports.updateTimeSeries = async (id, varName, data) => {
     try {
-        
     } catch (error) {
         throw error;
     }
@@ -123,7 +119,6 @@ exports.updateTimeSeries = async (id, varName, data) => {
 
 exports.deleteTimeSeries = async (id, varName) => {
     try {
-        
     } catch (error) {
         throw error;
     }
@@ -141,7 +136,6 @@ exports.getTimeSeriesDatasets = async (
     tsType = null
 ) => {
     try {
-        
     } catch (error) {
         throw error;
     }
@@ -149,7 +143,6 @@ exports.getTimeSeriesDatasets = async (
 
 exports.createTimeSeriesDataset = async (id, varName, data) => {
     try {
-        
     } catch (error) {
         throw error;
     }
@@ -157,7 +150,6 @@ exports.createTimeSeriesDataset = async (id, varName, data) => {
 
 exports.getTimeSeriesLabels = async (id, tsParam) => {
     try {
-        
     } catch (error) {
         throw error;
     }
@@ -165,7 +157,6 @@ exports.getTimeSeriesLabels = async (id, tsParam) => {
 
 exports.createTimeSeriesLabel = async (id, tsParam, data) => {
     try {
-        
     } catch (error) {
         throw error;
     }
@@ -173,7 +164,6 @@ exports.createTimeSeriesLabel = async (id, tsParam, data) => {
 
 exports.deleteTimeSeriesLabel = async (id, tsParam, labelId) => {
     try {
-        
     } catch (error) {
         throw error;
     }
@@ -181,7 +171,6 @@ exports.deleteTimeSeriesLabel = async (id, tsParam, labelId) => {
 
 exports.getTimeSeriesAlerts = async (id, tsParam) => {
     try {
-        
     } catch (error) {
         throw error;
     }
@@ -189,7 +178,6 @@ exports.getTimeSeriesAlerts = async (id, tsParam) => {
 
 exports.createTimeSeriesAlert = async (id, tsParam, data) => {
     try {
-        
     } catch (error) {
         throw error;
     }
@@ -197,7 +185,6 @@ exports.createTimeSeriesAlert = async (id, tsParam, data) => {
 
 exports.updateTimeSeriesAlert = async (id, tsParam) => {
     try {
-        
     } catch (error) {
         throw error;
     }
@@ -205,7 +192,6 @@ exports.updateTimeSeriesAlert = async (id, tsParam) => {
 
 exports.getTimeSeriesAlert = async (id, tsParam, alertId) => {
     try {
-        
     } catch (error) {
         throw error;
     }
@@ -213,7 +199,6 @@ exports.getTimeSeriesAlert = async (id, tsParam, alertId) => {
 
 exports.deleteTimeSeriesAlert = async (id, tsParam, alertId) => {
     try {
-        
     } catch (error) {
         throw error;
     }
@@ -229,7 +214,6 @@ exports.getTimeSeriesDatasetLabels = async (
     timeScale = null
 ) => {
     try {
-        
     } catch (error) {
         throw error;
     }
@@ -237,7 +221,6 @@ exports.getTimeSeriesDatasetLabels = async (
 
 exports.createTimeSeriesDatasetLabel = async (id, tsParam, data) => {
     try {
-        
     } catch (error) {
         throw error;
     }
@@ -254,7 +237,6 @@ exports.getTimeSeriesDatasetLabel = async (
     timeScale = null
 ) => {
     try {
-        
     } catch (error) {
         throw error;
     }

@@ -14,4 +14,4 @@ COPY . .
 
 EXPOSE 3001
 
-CMD [ "yarn", "docker" ]
+CMD [ "yarn", "start" ]

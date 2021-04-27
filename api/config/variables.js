@@ -27,5 +27,5 @@ module.exports = {
         key: process.env.API_KEY,
         token: process.env.API_TOKEN,
     },
-    domain: process.env.DOMAIN
+    sweep_api: process.env.SWEEP_API
 }

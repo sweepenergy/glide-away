@@ -97,7 +97,7 @@ class Modbus {
 		try {
 			// output value to console
 			const response = await this.readAll();
-			// console.table(response);
+			console.table(response);
 			// wait 1000ms before get another device
 			await this.sleep(1000);
 		} catch (error) {

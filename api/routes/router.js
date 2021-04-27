@@ -6,7 +6,7 @@ const userRoutes = require("./user/user.route");
 const directoryRoutes = require("./directory/directory.route");
 const streamRoutes = require("./stream/stream.route");
 const modbusRoutes = require("./modbus/modbus.route");
-const { domain } = require("../config/variables");
+const { sweep_api } = require("../config/variables");
 
 const router = express.Router();
 
@@ -18,7 +18,7 @@ router.get("/status", (_, response) => response.status(200).send("ok"));
 router.get("/health", async (request, response) => {
     const data = await axios({
         method: "get",
-        url: `https://${domain}/platform/healthcheck`,
+        url: `${sweep_api}/platform/healthcheck`,
         headers: {
             "Content-Type": "application/json",
             Authorization: `Basic ${btoa(

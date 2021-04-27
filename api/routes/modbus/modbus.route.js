@@ -9,6 +9,8 @@ router.route("/read/:id").get(controller.readHoldingRegister);
 
 router.route("/stream").get(controller.startStream);
 
+router.route("/add").post(controller.addModbusDevice)
+
 router.route("/:id").get(controller.connectToModbus);
 
 module.exports = router;

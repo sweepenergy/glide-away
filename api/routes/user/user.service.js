@@ -1,6 +1,6 @@
 const axios = require("axios");
 const parser = require("../../utils/parser");
-const { domain } = require("../../config/variables");
+const { sweep_api } = require("../../config/variables");
 
 exports.getAllUsers = async () => {
     try {
@@ -49,7 +49,7 @@ exports.getAuthorization = (data) =>
     new Promise((resolve, reject) => {
         axios({
             method: "post",
-            url: `https://${domain}/account/auth`,
+            url: `${sweep_api}/account/auth`,
             headers: {
                 "Content-Type": "application/json",
             },
@@ -70,7 +70,7 @@ exports.getAPIKeys = (auth) =>
     new Promise(async (resolve, reject) => {
         const response = await axios({
             method: "get",
-            url: `https://${domain}/account/auth/api_key`,
+            url: `${sweep_api}/account/auth/api_key`,
             headers: {
                 Authorization: auth,
             },
@@ -78,27 +78,50 @@ exports.getAPIKeys = (auth) =>
             .then((response) => parser.filterStatus(response.data))
             .catch((error) => reject(error));
 
-        const apiKey = response.active.filter(
-            (key) =>
-                key.ttl == "until_revoked" &&
-                key.status == "active" &&
-                key.scope.global.includes("get") &&
-                key.scope.global.includes("post") &&
-                key.scope.global.includes("put") &&
-                key.scope.global.includes("delete")
-        )[0];
+        if (response.active.length === 0) {
+            const response = await axios({
+                method: "post",
+                url: `${sweep_api}/account/auth/api_key`,
+                headers: {
+                    Authorization: auth,
+                },
+                data: {
+                    global_auth: ["get", "put", "post", "delete"],
+                    local_auth: [],
+                    ttl: "",
+                    name: "Glide Away",
+                },
+            })
+                .then((response) => parser.filterStatus(response.data))
+                .catch((error) => reject(error));
 
-        resolve({
-            api_key: apiKey.api_key,
-            api_token: apiKey.session_token_ref,
-        });
+            resolve({
+                api_key: response.session_api_id,
+                api_token: response.session_api_token,
+            });
+        } else {
+            const apiKey = response.active.filter(
+                (key) =>
+                    key.ttl == "until_revoked" &&
+                    key.status == "active" &&
+                    key.scope.global.includes("get") &&
+                    key.scope.global.includes("post") &&
+                    key.scope.global.includes("put") &&
+                    key.scope.global.includes("delete")
+            )[0];
+
+            resolve({
+                api_key: apiKey.api_key,
+                api_token: apiKey.session_token_ref,
+            });
+        }
     });
 
 exports.createAPIKey = (auth) =>
     new Promise(async (resolve, reject) => {
         const response = await axios({
             method: "post",
-            url: `https://${domain}/account/auth/api_key`,
+            url: `${sweep_api}/account/auth/api_key`,
             headers: {
                 Authorization: auth,
             },
@@ -129,7 +152,7 @@ exports.verifyAuthentication = (auth) =>
     new Promise((resolve, reject) => {
         axios({
             method: "get",
-            url: `https://${domain}/account/verify_auth`,
+            url: `${sweep_api}/account/verify_auth`,
             headers: {
                 Authorization: auth,
             },

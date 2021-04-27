@@ -8,7 +8,7 @@ router
     .get(controller.getDirectories)
     .post(controller.createDirectory);
 
-router.route("/verify").post(controller.verifyDirectorySetup);
+router.route("/verify").get(controller.verifyDirectorySetup);
 
 router
     .route("/:id")

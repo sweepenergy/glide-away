@@ -65,6 +65,30 @@ exports.startStream = async (request, response) => {
 };
 
 /**
+ * Add new modbus device
+ * @param {string} stream_id
+ * @param {object} device_config
+ * @header Basic Auth
+ * @return {string} Status
+ * @error Internal Server Error
+ */
+exports.addModbusDevice = (request, response) =>
+    new Promise((resolve, reject) => {
+        service
+            .addModbusDevice(request.body.devices_stream_id, request.body.sensors_directory_id, request.body.data, request.get("Authorization"))
+            .then((serviceResponse) => resolve(response.status(201).send(serviceResponse)))
+            .catch((error) =>
+                reject(
+                    response
+                        .status(500)
+                        .send(
+                            `[Modbus] Could not add new modbus device.\n\t=>    ${error}`
+                        )
+                )
+            );
+    });
+
+/**
  * Connect to the Modbus device
  * @param {string} id
  * @header Basic Auth
