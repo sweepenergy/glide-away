@@ -1,11 +1,13 @@
 import React, {useState, useEffect} from 'react';
 import {Line} from 'react-chartjs-2';
+import axios from 'axios';
 
 function Data2 ({props})  {
 
     const [chartData, setChartData] = useState({});
     const [chartX, setChartX] = useState([]);
     const [chartY, setChartY] = useState([]);
+    const [chartName, setChartName] = useState('');
     
     const chart = (props) => {
         let xData = [];
@@ -21,6 +23,7 @@ function Data2 ({props})  {
             .then(res=> {
                 console.log(res);
                 for(const dataObj of res.data.data){
+                    setChartName(dataObj.id);
                     xData.push(parseInt(dataObj.time))
                     yData.push(parseInt(dataObj.output))
                 }

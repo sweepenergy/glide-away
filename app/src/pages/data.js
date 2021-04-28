@@ -121,9 +121,8 @@ function Data() {
 
         <div>
             <div className='Data'>
-                <div className='time'>{time}</div>
+                <div className='time'></div>
                     
-
                 <div className='data-wrapper'>
                     <div class='data-element'>
                         <div className='element-name'>

@@ -25,7 +25,8 @@
 }
 
 .data-element{
-    background-color: #f4b2aa;
+    /*background-color: #f4b2aa;*/
+    background-color: #D1D1D1;
     display: flex;
     margin: 1rem 1rem;
     border-radius: 10px;
