@@ -23,10 +23,13 @@
     border-bottom: 2px grey solid;
 }
 
-.button{
-    background-color: #ff0066;
-    color: #fff;
-    font: courier;
-    padding: 10px 15px;
-    border: none;
+.button2 {
+    border:none;
+    color: black;
+    height: 12px;
+    width: 60px;
+    text-align: center;
+    margin: auto;
+    font-family: 'Courier New', Courier, monospace;
+    
 }

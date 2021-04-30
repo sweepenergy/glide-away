@@ -151,7 +151,7 @@ export default function App() {
 
     <div className="App">
       
-      <div style={{ width: "1400px", margin:"auto", height: "500px"}}>
+      <div style={{ width: "80%", margin:"auto", height: "500px"}}>
         
         <Chart data={data} series={series} axes={axes} tooltip />
         
