@@ -2,6 +2,7 @@ const axios = require("axios");
 const parser = require("../../utils/parser");
 const { sweep_api } = require("../../config/variables");
 const inputDataVar = require("../../data/stream.json");
+const { query } = require("express");
 
 exports.createStream = async (data) => {
     try {
@@ -40,6 +41,70 @@ exports.createStream = async (data) => {
         throw error;
     }
 };
+
+exports.getAllDevices = (id, auth, query) =>
+    new Promise(async (resolve, reject) => {
+        let params = "";
+
+        if (query) {
+            params = "?";
+            Object.keys(query).map((param, idx) => {
+                params += `${param}=${query[param]}`;
+                if (Object.keys(query).length - 1 !== idx) params += "&";
+            });
+        }
+
+        let deviceNames = await axios({
+            method: "get",
+            url: `${sweep_api}/stream/${id}/ts/device_name/dataset${params}`,
+            headers: {
+                Authorization: auth,
+            },
+        })
+            .then((response) => parser.removeTimestamps(response.data.dataset))
+            .catch((error) => reject(error));
+
+        let deviceReadIntervals = await axios({
+            method: "get",
+            url: `${sweep_api}/stream/${id}/ts/device_read_interval/dataset${params}`,
+            headers: {
+                Authorization: auth,
+            },
+        })
+            .then((response) => parser.removeTimestamps(response.data.dataset))
+            .catch((error) => reject(error));
+
+        let devicePorts = await axios({
+            method: "get",
+            url: `${sweep_api}/stream/${id}/ts/device_port/dataset${params}`,
+            headers: {
+                Authorization: auth,
+            },
+        })
+            .then((response) => parser.removeTimestamps(response.data.dataset))
+            .catch((error) => reject(error));
+
+        let deviceEnvironments = await axios({
+            method: "get",
+            url: `${sweep_api}/stream/${id}/ts/device_env/dataset${params}`,
+            headers: {
+                Authorization: auth,
+            },
+        })
+            .then((response) => parser.removeTimestamps(response.data.dataset))
+            .catch((error) => reject(error));
+
+        let devices = deviceNames.map((device, idx) => {
+            return {
+                deviceName: device,
+                deviceReadInterval: deviceReadIntervals[idx],
+                devicePort: devicePorts[idx],
+                deviceEnvironment: deviceEnvironments[idx],
+            };
+        });
+
+        resolve(devices);
+    });
 
 exports.getStream = (id, auth) =>
     new Promise((resolve, reject) => {
