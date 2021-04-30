@@ -1,18 +1,26 @@
-import React from "react";
+import React, { useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPlus, faTrash, faPenAlt } from "@fortawesome/free-solid-svg-icons";
 
 import "./styles.css";
 
-const Home = () => {
+const Home = ({
+	apiKey,
+	devicesDirectoryId,
+	devicesStreamId,
+	sensorsDirectoryId,
+}) => {
+	const [devices, setDevices] = useState([]);
+	const [deviceDirectoryId, setDeviceDirectoryId] = useState("");
+
 	const generateDevices = () => {
 		let deviceList = [];
 
-		for (let i = 0; i < 10; i++) {
+		devices.map((device) =>
 			deviceList.push(
 				<li className="dashboard__devices__device">
 					<span className="dashboard__devices__device__text">
-						Device {i + 1}
+						{device.deviceName}
 					</span>
 					<div className="dashboard__devices__device__icons">
 						<div className="dashboard__devices__device__icons__icon">
@@ -23,11 +31,12 @@ const Home = () => {
 						</div>
 					</div>
 				</li>
-			);
-		}
+			)
+		);
 
 		return <ul>{deviceList}</ul>;
 	};
+
 	return (
 		<main className="dashboard">
 			<section className="dashboard__heading">

@@ -1,96 +1,59 @@
-.login{
-    background-color: #fff;
-    text-align: center;
-    width:  100%;
-    margin: auto;
-    font-family: courier;
-    font-weight: bold;
-    display: flex;
-    flex-direction: column;
-    
+.login {
+	background-color: #fff;
+	text-align: center;
+	width: 100%;
+	margin: auto;
+	font-family: courier;
+	font-weight: bold;
+	display: flex;
+	flex-direction: column;
 }
 
-.login-container{
-    width:  100%;
-    padding-top: 70px;
-    margin: auto;
-    min-height: calc(100vh - 100px - 70px);
+.login-container {
+	width: 100%;
+	padding-top: 70px;
+	margin: auto;
+	min-height: calc(100vh - 100px - 70px);
 }
 
 .title {
-    font: bold 30px courier;
-    color:grey;
+	font: bold 30px courier;
+	color: grey;
 }
 
-.userinput{
-    padding: 5rem;
+.userinput {
+	padding: 5rem;
 }
 
 .input-control {
-    width: 100%;
-    margin: auto;
-    border: none;
-    padding-bottom: 35px;
-
+	width: 100%;
+	margin: auto;
+	border: none;
+	padding-bottom: 35px;
 }
 
-.input-control label{
-    display: block;
-    color: #ff0066;
-    padding: 10px 0;
+.input-control label {
+	display: block;
+	color: #ff0066;
+	padding: 10px 0;
 }
 
-.input-control input{
-    padding: 10px;
-    border: none;
-    border-bottom: 2px grey solid;
+.input-control input {
+	padding: 10px;
+	border: none;
+	border-bottom: 2px grey solid;
 }
 
-.button{
-    background-color: #ff0066;
-    color: #fff;
-    font: bold 15px courier;
-    height: 35px;
-    padding: 5px 35px;
-    border: none;
-    border-radius: 10px;
+.button {
+	background-color: #ff0066;
+	color: #fff;
+	font: bold 15px courier;
+	height: 35px;
+	padding: 5px 35px;
+	border: none;
+	border-radius: 10px;
 }
 
-footer{
-    background-color: black;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 80px;
-    max-width: 100%;
-    padding: 10px;
-}
-
-.footer-container{
-    display: grid;
-    grid-template-columns: 1fr 1fr 1fr;
-    list-style: none;
-    text-align: center;
-    width: 60vw;
-}
-
-.footer-item {
-    height: 80px;
-    color: white;
-    font: bold 20px courier;
-    display: flex;
-    justify-content: center;
-    height: 100%;
-}
-
-.footer-links {
-    display: flex;
-    color: white;
-    align-items: center;
-    text-decoration: none;
-    font: bold 20px courier;
-    height: 100%;
-}
-.footer-links:visited{
-    color: white;
+.button:hover {
+	cursor: pointer;
 }
