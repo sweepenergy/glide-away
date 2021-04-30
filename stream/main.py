@@ -6,15 +6,17 @@ import _thread as thread
 import sys
 import time
 import datetime
-from decouple import config
 
+from dotenv import load_dotenv
 from lib.genStationArray import genStationArray
 from requests.auth import HTTPBasicAuth
 from concurrent.futures import ThreadPoolExecutor, as_completed, process
 
-URL = config("URL")
-SWEEP_API_USER = config("SWEEP_API_KEY")
-SWEEP_API_TOKEN = config("SWEEP_API_TOKEN")
+load_dotenv()
+
+URL = os.getenv("URL")
+SWEEP_API_USER = os.getenv("SWEEP_API_ID")
+SWEEP_API_TOKEN = os.getenv("SWEEP_API_TOKEN")
 ENDPOINT = "wss://rt.sweepapi.com/?auth_user={0}&auth_key={1}".format(
     SWEEP_API_USER, SWEEP_API_TOKEN)
 
@@ -85,7 +87,7 @@ def sleepResolveError(error):
 
 
 if __name__ == "__main__":
-    home_directory = getDirectory("home")
+    home_directory = getDirectory("4f85837b-1449-4135-9924-67d83359d569")
     check_station_directory = False
     station_directory_name = "Sensors"
     station_directory_id = ""

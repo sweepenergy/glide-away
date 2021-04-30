@@ -1,15 +1,5 @@
 {
-  "name": "modbus",
-  "version": "1.0.0",
-  "description": "",
-  "main": "basic_flow_modbus_conn.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node basic_flow_modbus_conn.js"
-  },
-  "author": "",
-  "license": "ISC",
   "dependencies": {
-    "modbus-serial": "^8.0.1"  
+    "modbus-serial": "^8.0.1"
   }
 }

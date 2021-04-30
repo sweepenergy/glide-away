@@ -1,8 +1,8 @@
 import React from "react";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 
-import Home from "./pages/home";
 import Profile from "./pages/profile";
+import Home from "./pages/Home";
 import Data from './pages/data';
 import Data2 from './pages/Data2'
 import Login from './pages/login';
@@ -19,6 +19,7 @@ const App = () => {
                 <Route path='/data2'render={() =>(
                     <Data2 props={true}/>
                 )}/>
+                <Route path="/dashboard" component={Home} />
             </Switch>
                   
         </Router>

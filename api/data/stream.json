@@ -1,0 +1,142 @@
+[
+    {
+        "var_name": "ampere_a",
+        "display_name": "Ampere A",
+        "description": "",
+        "units": "amps",
+        "type": "number"
+    },
+    {
+        "var_name": "ampere_b",
+        "display_name": "Ampere B",
+        "description": "",
+        "units": "amps",
+        "type": "number"
+    },
+    {
+        "var_name": "ampere_c",
+        "display_name": "Ampere C",
+        "description": "",
+        "units": "amps",
+        "type": "number"
+    },
+    {
+        "var_name": "watts_3_total",
+        "display_name": "Watts 3 Total",
+        "description": "",
+        "units": "watts",
+        "type": "number"
+    },
+    {
+        "var_name": "var_3_total",
+        "display_name": "Var 3 Total",
+        "description": "Volt Ampere Reactive",
+        "units": "var",
+        "type": "number"
+    },
+    {
+        "var_name": "va_3_total",
+        "display_name": "Va 3 Total",
+        "description": "Volt Ampere",
+        "units": "va",
+        "type": "number"
+    },
+    {
+        "var_name": "power_factor",
+        "display_name": "Power Factor",
+        "description": "unitless",
+        "units": "unitless",
+        "type": "number"
+    },
+    {
+        "var_name": "neutral_current",
+        "display_name": "Neutral Current",
+        "description": "",
+        "units": "amps",
+        "type": "number"
+    },
+    {
+        "var_name": "watts_a",
+        "display_name": "Watts A",
+        "description": "",
+        "units": "watts",
+        "type": "number"
+    },
+    {
+        "var_name": "watts_b",
+        "display_name": "Watts B",
+        "description": "",
+        "units": "watts",
+        "type": "number"
+    },
+    {
+        "var_name": "watts_c",
+        "display_name": "Watts C",
+        "description": "",
+        "units": "watts",
+        "type": "number"
+    },
+    {
+        "var_name": "var_a",
+        "display_name": "Var A",
+        "description": "Volt Ampere Reactive",
+        "units": "var",
+        "type": "number"
+    },
+    {
+        "var_name": "var_b",
+        "display_name": "Var B",
+        "description": "Volt Ampere Reactive",
+        "units": "var",
+        "type": "number"
+    },
+    {
+        "var_name": "var_c",
+        "display_name": "Var C",
+        "description": "Volt Ampere Reactive",
+        "units": "var",
+        "type": "number"
+    },
+    {
+        "var_name": "va_a",
+        "display_name": "Va A",
+        "description": "Volt Ampere",
+        "units": "va",
+        "type": "number"
+    },
+    {
+        "var_name": "va_b",
+        "display_name": "Va B",
+        "description": "Volt Ampere",
+        "units": "va",
+        "type": "number"
+    },
+    {
+        "var_name": "va_c",
+        "display_name": "Va C",
+        "description": "Volt Ampere",
+        "units": "va",
+        "type": "number"
+    },
+    {
+        "var_name": "power_factor_a",
+        "display_name": "Power Factor A",
+        "description": "unitless",
+        "units": "unitless",
+        "type": "number"
+    },
+    {
+        "var_name": "power_factor_b",
+        "display_name": "Power Factor B",
+        "description": "unitless",
+        "units": "unitless",
+        "type": "number"
+    },
+    {
+        "var_name": "power_factor_c",
+        "display_name": "Power Factor C",
+        "description": "unitless",
+        "units": "unitless",
+        "type": "number"
+    }
+]
