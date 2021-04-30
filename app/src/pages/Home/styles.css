@@ -1,5 +1,6 @@
 .dashboard {
 	padding: 2vh 20vw;
+	overflow-x: hidden;
 }
 
 .dashboard__heading {
@@ -59,6 +60,8 @@
 	display: flex;
 	align-items: center;
 	justify-content: center;
+	border: none;
+    background-color: white;
 }
 
 .dashboard__heading__icon:hover,

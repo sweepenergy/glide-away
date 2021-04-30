@@ -7,6 +7,10 @@ footer {
 	height: 80px;
 	max-width: 100%;
 	padding: 10px;
+	position: relative;
+    bottom: 0;
+    width: 100%;
+	overflow: hidden;
 }
 
 .footer-container {

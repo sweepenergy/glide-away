@@ -1,8 +1,11 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPlus, faTrash, faPenAlt } from "@fortawesome/free-solid-svg-icons";
+import axios from "axios";
 
 import "./styles.css";
+
+const GLIDE_AWAY = "http://localhost:3001";
 
 const Home = ({
 	apiKey,
@@ -11,14 +14,34 @@ const Home = ({
 	sensorsDirectoryId,
 }) => {
 	const [devices, setDevices] = useState([]);
-	const [deviceDirectoryId, setDeviceDirectoryId] = useState("");
+
+	useEffect(() => {
+		const getDevices = async () => {
+			let devicesList = await axios
+				.get(
+					`${GLIDE_AWAY}/api/stream/dataset/${devicesStreamId}?span=raw&time_scale=1m&ts_type=skewness`,
+					{
+						auth: {
+							username: apiKey.api_key,
+							password: apiKey.api_token,
+						},
+					}
+				)
+				.then((response) => response.data)
+				.catch((error) => console.error(error));
+
+			setDevices(devicesList);
+		};
+
+		getDevices();
+	}, []);
 
 	const generateDevices = () => {
 		let deviceList = [];
 
-		devices.map((device) =>
+		devices.map((device, idx) =>
 			deviceList.push(
-				<li className="dashboard__devices__device">
+				<li className="dashboard__devices__device" key={idx}>
 					<span className="dashboard__devices__device__text">
 						{device.deviceName}
 					</span>
@@ -37,13 +60,57 @@ const Home = ({
 		return <ul>{deviceList}</ul>;
 	};
 
+	const handleClick = async () => {
+		await axios
+			.post(
+				`${GLIDE_AWAY}/api/modbus/add`,
+				{
+					devices_stream_id: `${devicesStreamId}`,
+					sensors_directory_id: `${sensorsDirectoryId}`,
+					data: {
+						deviceName: `Modbus ${devices.length}`,
+						deviceReadInterval: 5000,
+						devicePort: 5020,
+						deviceEnvironment: "localhost",
+						deviceNumber: devices.length,
+					},
+				},
+				{
+					auth: {
+						username: apiKey.api_key,
+						password: apiKey.api_token,
+					},
+				}
+			)
+			.then((response) => response.data)
+			.catch((error) => console.error(error));
+
+		let devicesList = await axios
+			.get(
+				`${GLIDE_AWAY}/api/stream/dataset/${devicesStreamId}?span=raw&time_scale=1m&ts_type=skewness`,
+				{
+					auth: {
+						username: apiKey.api_key,
+						password: apiKey.api_token,
+					},
+				}
+			)
+			.then((response) => response.data)
+			.catch((error) => console.error(error));
+
+		setDevices(devicesList);
+	};
+
 	return (
 		<main className="dashboard">
 			<section className="dashboard__heading">
 				<h2 className="dashboard__heading__title">Modbus Devices</h2>
-				<div className="dashboard__heading__icon">
+				<button
+					className="dashboard__heading__icon"
+					onClick={handleClick}
+				>
 					<FontAwesomeIcon icon={faPlus} />
-				</div>
+				</button>
 			</section>
 			<div className="bar"></div>
 			<section className="dashboard__devices">
