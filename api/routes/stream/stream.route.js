@@ -5,6 +5,8 @@ const router = express.Router();
 
 router.route("/").post(controller.createStream);
 
+router.route("/dataset/:id").get(controller.getAllDevices);
+
 router
     .route("/:id")
     .get(controller.getStream)
