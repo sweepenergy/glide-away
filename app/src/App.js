@@ -1,12 +1,11 @@
 import React from "react";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 
-import Profile from "./pages/profile";
 import Home from "./pages/Home";
 import Data from './pages/data';
 import Data2 from './pages/Data2'
 import Login from './pages/login';
-import Login3 from './pages/login3';
+import Navbar from './pages/Navbar'
 
 const App = () => {
     return (
