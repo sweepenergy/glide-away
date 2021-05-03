@@ -1,3 +1,8 @@
+#root {
+	min-height: 100%;
+	display: grid;
+	grid-template-rows: 1fr auto;
+}
 
 footer {
 	background-color: black;
@@ -8,9 +13,11 @@ footer {
 	max-width: 100%;
 	padding: 10px;
 	position: relative;
-    bottom: 0;
-    width: 100%;
+	bottom: 0;
+	width: 100%;
 	overflow: hidden;
+	grid-row-start: 2;
+	grid-row-end: 3;
 }
 
 .footer-container {
@@ -42,7 +49,7 @@ footer {
 }
 
 .footer-links:hover {
-    cursor: pointer;
+	cursor: pointer;
 }
 
 .footer-links:visited {

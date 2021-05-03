@@ -2,8 +2,8 @@ import React, { useState } from "react";
 import axios from "axios";
 import { useHistory } from "react-router-dom";
 
-import "./login.css";
-import check from "./cloud.png";
+import "./styles.css";
+import check from "../../assets/cloud.png";
 
 const GLIDE_AWAY = "http://localhost:3001";
 

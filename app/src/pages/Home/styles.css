@@ -1,6 +1,8 @@
 .dashboard {
 	padding: 2vh 20vw;
 	overflow-x: hidden;
+	min-height: 100%;
+	margin-bottom: -80px;
 }
 
 .dashboard__heading {
@@ -61,11 +63,43 @@
 	align-items: center;
 	justify-content: center;
 	border: none;
-    background-color: white;
+	background-color: white;
 }
 
 .dashboard__heading__icon:hover,
 .dashboard__devices__device__icons__icon:hover {
 	box-shadow: 0 8px 18px -6px black;
 	border-radius: 9999px;
+}
+
+.modal__header {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+}
+
+.modal__header > button {
+	border: none;
+	height: fit-content;
+	background-color: white;
+}
+
+.modal__form {
+	display: flex;
+	flex-direction: column;
+}
+
+.modal__form > div {
+	display: flex;
+	flex-direction: row;
+	justify-content: space-between;
+	align-items: center;
+}
+
+.modal__form > div > label {
+	padding: 1rem 2rem 1rem 0;
+}
+
+.modal__form > div > input {
+	height: fit-content;
 }

@@ -3,7 +3,7 @@ import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import { createBrowserHistory } from "history"
 
 import Home from "./pages/Home";
-import Login from "./pages/login";
+import Login from "./pages/Login";
 import useDate from "./components/useDate";
 
 import "./App.css"
