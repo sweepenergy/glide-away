@@ -1,6 +1,11 @@
 import React, { useEffect, useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faPlus, faTrash, faPenAlt } from "@fortawesome/free-solid-svg-icons";
+import {
+	faPlus,
+	faTrash,
+	faPenAlt,
+	faSyncAlt,
+} from "@fortawesome/free-solid-svg-icons";
 import axios from "axios";
 import Modal from "react-modal";
 
@@ -16,6 +21,7 @@ const customStyles = {
 		bottom: "auto",
 		marginRight: "-50%",
 		transform: "translate(-50%, -50%)",
+		borderRadius: "20px",
 	},
 };
 
@@ -33,6 +39,7 @@ const Home = ({
 	const [devicePort, setDevicePort] = useState(5020);
 	const [deviceEnvironment, setDeviceEnvironment] = useState("localhost");
 	const [deviceReadInterval, setDeviceReadInterval] = useState(5000);
+	const [submitText, setSubmitText] = useState("Send");
 
 	useEffect(() => {
 		const getDevices = async () => {
@@ -100,7 +107,13 @@ const Home = ({
 			);
 	};
 
-	const handleSubmit = async () => {
+	const handleSubmit = async (event) => {
+		event.preventDefault();
+
+		setSubmitText(
+			<FontAwesomeIcon icon={faSyncAlt} className="fa fa-spinner" />
+		);
+
 		await axios
 			.post(
 				`${GLIDE_AWAY}/api/modbus/add`,
@@ -138,7 +151,9 @@ const Home = ({
 			.then((response) => response.data)
 			.catch((error) => console.error(error));
 
-		setDevices(devicesList);
+		await setDevices(devicesList);
+
+		closeModal();
 	};
 
 	return (
@@ -204,7 +219,7 @@ const Home = ({
 								}
 							/>
 						</div>
-						<button type="submit">Submit</button>
+						<button type="submit">{submitText}</button>
 					</form>
 				</Modal>
 			</section>
