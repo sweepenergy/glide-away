@@ -116,3 +116,42 @@
 	/* Apply 'spinner' keyframes looping once every second (1s)  */
 	animation: spinner 1s linear infinite;
 }
+
+.online {
+	color: green;
+}
+
+.offline {
+	color: red;
+}
+
+table {
+	width: 96%;
+	border-collapse: collapse;
+	margin: 2%;
+}
+
+thead {
+	border-bottom: 1px solid black;
+}
+
+tbody > tr:first-child {
+	padding-top: 1em;
+}
+
+tbody > tr > td:first-child {
+	font-weight: bold;
+	font-size: medium;
+}
+
+tbody > tr > td {
+	padding-bottom: 1em;
+	border-bottom: 1px dotted grey;
+}
+
+tbody > tr:nth-child(even) {
+	background: #ccc;
+}
+tbody > tr:nth-child(odd) {
+	background: #fff;
+}

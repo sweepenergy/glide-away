@@ -56,6 +56,10 @@ const Home = ({
 				.then((response) => response.data)
 				.catch((error) => console.error(error));
 
+			devicesList.map((device) => {
+				return { status: false, ...device };
+			});
+
 			setDevices(devicesList);
 		};
 
@@ -67,23 +71,32 @@ const Home = ({
 
 		devices.map((device, idx) =>
 			deviceList.push(
-				<li className="dashboard__devices__device" key={idx}>
-					<span className="dashboard__devices__device__text">
-						{device.deviceName}
-					</span>
-					<div className="dashboard__devices__device__icons">
-						<div className="dashboard__devices__device__icons__icon">
-							<FontAwesomeIcon icon={faPenAlt} />
-						</div>
-						<div className="dashboard__devices__device__icons__icon">
-							<FontAwesomeIcon icon={faTrash} />
-						</div>
-					</div>
-				</li>
+				<tr key={idx}>
+					<td>{device.deviceName}</td>
+					<td>{device.deviceReadInterval}</td>
+					<td>
+						{device.deviceEnvironment}:{device.devicePort}
+					</td>
+					<td className={device.status ? "online" : "offline"}>
+						offline
+					</td>
+				</tr>
 			)
 		);
 
-		return <ul>{deviceList}</ul>;
+		return (
+			<table>
+				<thead>
+					<tr>
+						<td>Device Name</td>
+						<td>Read Interval</td>
+						<td>Connection</td>
+						<td>Status</td>
+					</tr>
+				</thead>
+				<tbody>{deviceList}</tbody>
+			</table>
+		);
 	};
 
 	const openModal = () => {
@@ -151,6 +164,12 @@ const Home = ({
 			.then((response) => response.data)
 			.catch((error) => console.error(error));
 
+		devicesList.map((device) => {
+			if (device.deviceName === deviceName)
+				return { status: true, ...device };
+			return { status: false, ...device };
+		});
+
 		await setDevices(devicesList);
 
 		closeModal();
@@ -176,6 +195,7 @@ const Home = ({
 						<h2>Add New Device</h2>
 						<button onClick={closeModal}>close</button>
 					</div>
+					<div className="bar"></div>
 					<form className="modal__form" onSubmit={handleSubmit}>
 						<div>
 							<label htmlFor="name">Name</label>
