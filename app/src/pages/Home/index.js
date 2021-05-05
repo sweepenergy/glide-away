@@ -108,16 +108,11 @@ const Home = ({
 					devices_stream_id: `${devicesStreamId}`,
 					sensors_directory_id: `${sensorsDirectoryId}`,
 					data: {
-						// deviceName: `${deviceName}`,
-						// deviceReadInterval: Number(deviceReadInterval),
-						// devicePort: Number(devicePort),
-						// deviceEnvironment: `${deviceEnvironment}`,
-						// deviceNumber: Number(devices.length),
-						deviceName: `Modbus ${devices.length}`,
-						deviceReadInterval: 5000,
-						devicePort: 5020,
-						deviceEnvironment: "localhost",
-						deviceNumber: devices.length,
+						deviceName: `${deviceName}`,
+						deviceReadInterval: Number(deviceReadInterval),
+						devicePort: Number(devicePort),
+						deviceEnvironment: `${deviceEnvironment}`,
+						deviceNumber: Number(devices.length),
 					},
 				},
 				{
@@ -168,7 +163,7 @@ const Home = ({
 					</div>
 					<form className="modal__form" onSubmit={handleSubmit}>
 						<div>
-							<label for="name">Name</label>
+							<label htmlFor="name">Name</label>
 							<input
 								id="name"
 								value={deviceName}
@@ -177,7 +172,7 @@ const Home = ({
 							/>
 						</div>
 						<div>
-							<label for="interval">Read Interval</label>
+							<label htmlFor="interval">Read Interval</label>
 							<input
 								id="interval"
 								value={deviceReadInterval}
@@ -188,7 +183,7 @@ const Home = ({
 							/>
 						</div>
 						<div>
-							<label for="port">Port</label>
+							<label htmlFor="port">Port</label>
 							<input
 								id="port"
 								value={devicePort}
@@ -199,7 +194,7 @@ const Home = ({
 							/>
 						</div>
 						<div>
-							<label for="environment">Environment</label>
+							<label htmlFor="environment">Environment</label>
 							<input
 								id="environment"
 								value={deviceEnvironment}
