@@ -17,30 +17,13 @@ services:
               protocol: tcp
               mode: bridge
 
-    glide_away_api:
-        container_name: glide_away_api
-        build: 
-            context: ./api
-            dockerfile: Dockerfile
-        ports:
-            - target: 3001
-              published: 3001
-              protocol: tcp
-              mode: bridge
-
-    # glide_away_app:
-    #     container_name: glide_away_app
-    #     build:
-    #         context: ./app
+    # glide_away_api:
+    #     container_name: glide_away_api
+    #     build: 
+    #         context: ./api
     #         dockerfile: Dockerfile
     #     ports:
-    #         - target: 3000
-    #           published: 3000
+    #         - target: 3001
+    #           published: 3001
     #           protocol: tcp
     #           mode: bridge
-
-    # glide_away_stream:
-    #     container_name: glide_away_stream
-    #     build:
-    #         context: ./stream
-    #         dockerfile: Dockerfile

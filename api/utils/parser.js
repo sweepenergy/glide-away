@@ -8,3 +8,7 @@ exports.filterStatus = (obj) => {
             return o;
         }, {});
 };
+
+exports.removeTimestamps = (arr) => {
+    return arr.map((idx) => idx[1]);
+}

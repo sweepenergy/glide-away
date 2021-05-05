@@ -1,5 +1,8 @@
 .dashboard {
 	padding: 2vh 20vw;
+	overflow-x: hidden;
+	min-height: 100%;
+	margin-bottom: -80px;
 }
 
 .dashboard__heading {
@@ -59,10 +62,96 @@
 	display: flex;
 	align-items: center;
 	justify-content: center;
+	border: none;
+	background-color: white;
 }
 
 .dashboard__heading__icon:hover,
 .dashboard__devices__device__icons__icon:hover {
 	box-shadow: 0 8px 18px -6px black;
 	border-radius: 9999px;
+}
+
+.modal__header {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+}
+
+.modal__header > button {
+	border: none;
+	height: fit-content;
+	background-color: white;
+}
+
+.modal__form {
+	display: flex;
+	flex-direction: column;
+}
+
+.modal__form > div {
+	display: flex;
+	flex-direction: row;
+	justify-content: space-between;
+	align-items: center;
+}
+
+.modal__form > div > label {
+	padding: 1rem 2rem 1rem 0;
+}
+
+.modal__form > div > input {
+	height: fit-content;
+}
+
+/* Define an animation behavior */
+@keyframes spinner {
+	to {
+		transform: rotate(360deg);
+	}
+}
+
+/* This is the class name given by the Font Awesome component when icon contains 'spinner' */
+.fa-spinner {
+	/* Apply 'spinner' keyframes looping once every second (1s)  */
+	animation: spinner 1s linear infinite;
+}
+
+.online {
+	color: green;
+}
+
+.offline {
+	color: red;
+}
+
+table {
+	width: 96%;
+	border-collapse: collapse;
+	margin: 2%;
+}
+
+thead {
+	border-bottom: 1px solid black;
+}
+
+tbody > tr:first-child {
+	padding-top: 1em;
+}
+
+tbody > tr > td:first-child {
+	font-weight: bold;
+	font-size: medium;
+}
+
+tbody > tr > td {
+	padding-bottom: 1em;
+	border-bottom: 1px dotted grey;
+}
+
+tbody > tr:nth-child(even) {
+	background: #ccc;
+}
+tbody > tr:nth-child(odd) {
+	background: #fff;
 }

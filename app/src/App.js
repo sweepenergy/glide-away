@@ -1,29 +1,72 @@
-import React from "react";
+import React, { useState } from "react";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+import { createBrowserHistory } from "history"
 
-import Profile from "./pages/profile";
 import Home from "./pages/Home";
-import Data from './pages/data';
-import Data2 from './pages/Data2'
-import Login from './pages/login';
-import Login3 from './pages/login3';
+import Login from "./pages/Login";
+import useDate from "./components/useDate";
+
+import "./App.css"
 
 const App = () => {
-    return (
-        <Router>
-           
-            <Switch>
-                <Route exact path='/'  component={Login}/>
-                <Route path='/profile'  component={Profile}/>
-                <Route path='/data'  component={Data}/>
-                <Route path='/data2'render={() =>(
-                    <Data2 props={true}/>
-                )}/>
-                <Route path="/dashboard" component={Home} />
-            </Switch>
-                  
-        </Router>
-    );
-}
+	const { time } = useDate();
+	const [apiKey, setApiKey] = useState({
+		api_key: "",
+		api_token: "",
+	});
+	const [devicesDirectoryId, setDevicesDirectoryId] = useState("");
+	const [devicesStreamId, setDevicesStreamId] = useState("");
+	const [sensorsDirectoryId, setSensorsDirectoryId] = useState("");
+
+	return (
+		<Router history={createBrowserHistory}>
+			<Switch>
+				<Route exact path="/">
+					<Login
+						setApiKey={setApiKey}
+						setDevicesDirectoryId={setDevicesDirectoryId}
+						setSensorsDirectoryId={setSensorsDirectoryId}
+						setDevicesStreamId={setDevicesStreamId}
+					/>
+				</Route>
+				<Route path="/dashboard">
+					<Home
+						apiKey={apiKey}
+						devicesDirectoryId={devicesDirectoryId}
+						devicesStreamId={devicesStreamId}
+						sensorsDirectoryId={sensorsDirectoryId}
+					/>
+				</Route>
+			</Switch>
+			<footer>
+				<ul className="footer-container">
+					<li className="footer-item">
+						<button
+							className="footer-links"
+							onClick={() => {
+								window.location.href =
+									"https://sweepenergy.com";
+							}}
+						>
+							Sweep Energy
+						</button>
+					</li>
+					<li className="footer-item">{time}</li>
+					<li className="footer-item">
+						<button
+							className="footer-links"
+							onClick={() => {
+								window.location.href =
+									"https://docs.sweepapi.com";
+							}}
+						>
+							API
+						</button>
+					</li>
+				</ul>
+			</footer>
+		</Router>
+	);
+};
 
 export default App;

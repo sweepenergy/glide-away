@@ -78,7 +78,7 @@ exports.getAPIKeys = (auth) =>
             .then((response) => parser.filterStatus(response.data))
             .catch((error) => reject(error));
 
-        if (response.active.length === 0) {
+        if (response.active) {
             const response = await axios({
                 method: "post",
                 url: `${sweep_api}/account/auth/api_key`,

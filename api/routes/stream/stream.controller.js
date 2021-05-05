@@ -25,6 +25,28 @@ exports.createStream = (request, response) =>
             );
     });
 
+exports.getAllDevices = (request, response) =>
+    new Promise((resolve, reject) => {
+        service
+            .getAllDevices(
+                request.params.id,
+                request.get("Authorization"),
+                request.query
+            )
+            .then((serviceResponse) =>
+                resolve(response.status(200).send(serviceResponse))
+            )
+            .catch((error) =>
+                reject(
+                    response
+                        .status(500)
+                        .send(
+                            `[Directory] Could not fetch devices.\n\t=>    ${error}`
+                        )
+                )
+            );
+    });
+
 /**
  * Get specific stream
  * @param {string} id
@@ -321,7 +343,8 @@ exports.getTimeSeriesDatasets = (request, response) =>
         service
             .getTimeSeriesDatasets(
                 request.params.id,
-                request.params.var_name,
+                request.params.var_name ? request.params.var_name : null,
+                request.get("Authorization"),
                 request.query.span ? request.query.span : null,
                 request.query.time_scale ? request.query.time_scale : null,
                 request.query.range_start ? request.query.range_start : null,
