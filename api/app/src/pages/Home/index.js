@@ -11,7 +11,7 @@ import Modal from "react-modal";
 
 import "./styles.css";
 
-const GLIDE_AWAY = "http://localhost:3001";
+const GLIDE_AWAY = "http://localhost:3000";
 
 const customStyles = {
 	content: {
