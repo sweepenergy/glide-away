@@ -4,7 +4,7 @@ const methodOverride = require("method-override");
 const cors = require("cors");
 const helmet = require("helmet");
 const morgan = require("morgan");
-const path = require("path")
+const path = require("path");
 
 const routes = require("../routes/router");
 
@@ -31,8 +31,7 @@ app.use(helmet());
 // enable CORS - Cross Origin Resource Sharing
 app.use(cors());
 
-app.use(express.static(path.join(__dirname, "app/build")));
-console.log(__dirname + "app/build")
+app.use(express.static(path.join(__dirname, "..", "/app/build")));
 
 // mount api routes
 app.use("/api", routes);
