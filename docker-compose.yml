@@ -4,18 +4,105 @@ services:
     # The Modbus TCP Server is a simple, in python written, Modbus TCP server. 
     # It listens to port 5020 and respond to any register types with a 0x0000. 
     # The Modbus registers can be also predefined with values.
-    modbus_server:
-        container_name: modbus_server
+    modbus_server1:
+        container_name: modbus_server1
         image: oitc/modbus-server
         restart: always
         command: -f /server_config.json
         volumes:
-            - ./modbus/server_config.json:/server_config.json
+            - ./server_config.json:/server_config.json
         ports:
-            - target: 5020 # the port inside the container
-              published: 5020 # the publicly exposed port
-              protocol: tcp
-              mode: bridge
+            - "5020:5020"
+
+    modbus_server2:
+        container_name: modbus_server2
+        image: oitc/modbus-server
+        restart: always
+        command: -f /server_config.json
+        volumes:
+            - ./server_config.json:/server_config.json
+        ports:
+            - "5021:5020"
+
+    modbus_server3:
+        container_name: modbus_server3
+        image: oitc/modbus-server
+        restart: always
+        command: -f /server_config.json
+        volumes:
+            - ./server_config.json:/server_config.json
+        ports:
+            - "5022:5020"
+
+    modbus_server4:
+        container_name: modbus_server4
+        image: oitc/modbus-server
+        restart: always
+        command: -f /server_config.json
+        volumes:
+            - ./server_config.json:/server_config.json
+        ports:
+            - "5023:5020"
+    
+    modbus_server5:
+        container_name: modbus_server5
+        image: oitc/modbus-server
+        restart: always
+        command: -f /server_config.json
+        volumes:
+            - ./server_config.json:/server_config.json
+        ports:
+            - "5024:5020"
+
+    modbus_server6:
+        container_name: modbus_server6
+        image: oitc/modbus-server
+        restart: always
+        command: -f /server_config.json
+        volumes:
+            - ./server_config.json:/server_config.json
+        ports:
+            - "5025:5020"
+
+    modbus_server7:
+        container_name: modbus_server7
+        image: oitc/modbus-server
+        restart: always
+        command: -f /server_config.json
+        volumes:
+            - ./server_config.json:/server_config.json
+        ports:
+            - "5026:5020"
+
+    modbus_server8:
+        container_name: modbus_server8
+        image: oitc/modbus-server
+        restart: always
+        command: -f /server_config.json
+        volumes:
+            - ./server_config.json:/server_config.json
+        ports:
+            - "5027:5020"
+
+    modbus_server9:
+        container_name: modbus_server9
+        image: oitc/modbus-server
+        restart: always
+        command: -f /server_config.json
+        volumes:
+            - ./server_config.json:/server_config.json
+        ports:
+            - "5028:5020"
+
+    modbus_server10:
+        container_name: modbus_server10
+        image: oitc/modbus-server
+        restart: always
+        command: -f /server_config.json
+        volumes:
+            - ./server_config.json:/server_config.json
+        ports:
+            - "5029:5020"
 
     # glide_away_api:
     #     container_name: glide_away_api

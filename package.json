@@ -7,7 +7,9 @@
   },
   "main": "index.js",
   "license": "MIT",
+  "proxy": "http://localhost:3000",
   "scripts": {
+    "prestart": "cd app && yarn build && cd ..",
     "start": "node index.js",
     "docker": "NODE_ENV=docker node index.js",
     "debug": "node --async-stack-traces index.js"
@@ -23,5 +25,8 @@
     "method-override": "^3.0.0",
     "modbus-serial": "^8.0.1",
     "morgan": "^1.10.0"
+  },
+  "devDependencies": {
+    "@appnest/readme": "^1.2.7"
   }
 }

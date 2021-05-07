@@ -5,7 +5,7 @@ import { useHistory } from "react-router-dom";
 import "./styles.css";
 import check from "../../assets/cloud.png";
 
-const GLIDE_AWAY = "http://localhost:3001";
+const GLIDE_AWAY = "http://localhost:3000";
 
 const Login = ({
 	setApiKey,
