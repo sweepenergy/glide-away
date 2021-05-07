@@ -1,6 +1,6 @@
 const ModbusRTU = require("modbus-serial");
 
-const meterdata = require("../api/data/meter.json");
+const meterdata = require("../../data/meter.json");
 
 /**
  * This is a simple Modbus overlay that allows us to create multiple instances of the client and open multiple streams of data

@@ -31,6 +31,11 @@ app.use(helmet());
 // enable CORS - Cross Origin Resource Sharing
 app.use(cors());
 
+app.use((_, response, next) => {
+    response.setHeader("Content-Security-Policy", "default-src 'self' 'unsafe-inline'");
+    return next();
+});
+
 app.use(express.static(path.join(__dirname, "..", "/app/build")));
 
 // mount api routes

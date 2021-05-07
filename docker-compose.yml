@@ -10,7 +10,7 @@ services:
         restart: always
         command: -f /server_config.json
         volumes:
-            - ./modbus/server_config.json:/server_config.json
+            - ./server_config.json:/server_config.json
         ports:
             - "5020:5020"
 
@@ -20,7 +20,7 @@ services:
         restart: always
         command: -f /server_config.json
         volumes:
-            - ./modbus/server_config.json:/server_config.json
+            - ./server_config.json:/server_config.json
         ports:
             - "5021:5020"
 
@@ -30,7 +30,7 @@ services:
         restart: always
         command: -f /server_config.json
         volumes:
-            - ./modbus/server_config.json:/server_config.json
+            - ./server_config.json:/server_config.json
         ports:
             - "5022:5020"
 
@@ -40,7 +40,7 @@ services:
         restart: always
         command: -f /server_config.json
         volumes:
-            - ./modbus/server_config.json:/server_config.json
+            - ./server_config.json:/server_config.json
         ports:
             - "5023:5020"
     
@@ -50,7 +50,7 @@ services:
         restart: always
         command: -f /server_config.json
         volumes:
-            - ./modbus/server_config.json:/server_config.json
+            - ./server_config.json:/server_config.json
         ports:
             - "5024:5020"
 
@@ -60,7 +60,7 @@ services:
         restart: always
         command: -f /server_config.json
         volumes:
-            - ./modbus/server_config.json:/server_config.json
+            - ./server_config.json:/server_config.json
         ports:
             - "5025:5020"
 
@@ -70,7 +70,7 @@ services:
         restart: always
         command: -f /server_config.json
         volumes:
-            - ./modbus/server_config.json:/server_config.json
+            - ./server_config.json:/server_config.json
         ports:
             - "5026:5020"
 
@@ -80,7 +80,7 @@ services:
         restart: always
         command: -f /server_config.json
         volumes:
-            - ./modbus/server_config.json:/server_config.json
+            - ./server_config.json:/server_config.json
         ports:
             - "5027:5020"
 
@@ -90,7 +90,7 @@ services:
         restart: always
         command: -f /server_config.json
         volumes:
-            - ./modbus/server_config.json:/server_config.json
+            - ./server_config.json:/server_config.json
         ports:
             - "5028:5020"
 
@@ -100,7 +100,7 @@ services:
         restart: always
         command: -f /server_config.json
         volumes:
-            - ./modbus/server_config.json:/server_config.json
+            - ./server_config.json:/server_config.json
         ports:
             - "5029:5020"
 
