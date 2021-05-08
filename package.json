@@ -10,7 +10,7 @@
   "scripts": {
     "prestart": "cd app && yarn build && cd ..",
     "start": "node index.js",
-    "docker": "NODE_ENV=docker node index.js",
+    "docker": "node index.js",
     "debug": "node --async-stack-traces index.js"
   },
   "dependencies": {

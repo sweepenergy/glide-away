@@ -103,14 +103,3 @@ services:
             - ./server_config.json:/server_config.json
         ports:
             - "5029:5020"
-
-    # glide_away_api:
-    #     container_name: glide_away_api
-    #     build: 
-    #         context: ./api
-    #         dockerfile: Dockerfile
-    #     ports:
-    #         - target: 3001
-    #           published: 3001
-    #           protocol: tcp
-    #           mode: bridge
