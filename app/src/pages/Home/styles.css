@@ -118,11 +118,8 @@
 }
 
 .online {
-	color: green;
-}
-
-.offline {
-	color: red;
+	color: #26b326;
+    font-weight: bolder;
 }
 
 table {
