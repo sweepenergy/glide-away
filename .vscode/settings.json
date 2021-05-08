@@ -10,6 +10,7 @@
         "getenv",
         "meterdata",
         "meterdatalist",
+        "toastify",
         "unitless"
     ]
 }

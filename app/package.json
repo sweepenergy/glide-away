@@ -4,11 +4,10 @@
   "private": true,
   "scripts": {
     "start": "react-scripts start",
-    "build": "react-scripts build",
+    "build": "node ./update-build.js && react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
   },
-  "proxy": "http://localhost:3000",
   "browserslist": {
     "production": [
       ">0.2%",
@@ -32,17 +31,20 @@
     "@fortawesome/free-solid-svg-icons": "^5.15.3",
     "@fortawesome/react-fontawesome": "^0.1.14",
     "axios": "^0.21.1",
+    "moment": "^2.29.1",
     "react": "^17.0.1",
-    "react-charts": "^2.0.0-beta.7",
     "react-dom": "^17.0.1",
     "react-modal": "^3.13.1",
     "react-router-dom": "^5.2.0",
     "react-scripts": "4.0.2",
+    "react-toastify": "^7.0.4",
     "web-vitals": "^1.0.1"
   },
   "devDependencies": {
     "@testing-library/jest-dom": "^5.11.4",
     "@testing-library/react": "^11.1.0",
     "@testing-library/user-event": "^12.1.10"
-  }
+  },
+  "buildDate": 1620436454685,
+  "proxy": "http://localhost:3000"
 }

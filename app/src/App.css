@@ -55,3 +55,14 @@ footer {
 .footer-links:visited {
 	color: white;
 }
+
+.container {
+    display: flex;
+    flex-direction: column;
+}
+
+.container > p {
+    text-align: center;
+    color: white;
+    margin: 0;
+}
