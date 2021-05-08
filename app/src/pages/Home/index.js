@@ -1,9 +1,11 @@
 import React, { useEffect, useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faPlus, faSyncAlt } from "@fortawesome/free-solid-svg-icons";
+import { faPlus, faSyncAlt, faLink } from "@fortawesome/free-solid-svg-icons";
 import axios from "axios";
 import Modal from "react-modal";
+import { ToastContainer, toast } from "react-toastify";
 
+import "react-toastify/dist/ReactToastify.css";
 import "./styles.css";
 
 const GLIDE_AWAY = "http://localhost:3000";
@@ -35,6 +37,9 @@ const Home = ({
     const [deviceEnvironment, setDeviceEnvironment] = useState("localhost");
     const [deviceReadInterval, setDeviceReadInterval] = useState(5000);
     const [submitText, setSubmitText] = useState("Send");
+    const success = () => toast("Wow so easy!");
+    const duplicateName = () =>
+        toast("Name of device already exists, please try a different name!");
 
     useEffect(() => {
         const getDevices = async () => {
@@ -67,7 +72,18 @@ const Home = ({
         devices.map((device, idx) =>
             deviceList.push(
                 <tr key={idx}>
-                    <td>{device.deviceName}</td>
+                    <td>
+                        <a
+                            href={`https://app.facility-ops.com/dashboard/directory/${sensorsDirectoryId}`}
+                            alt="sensors directory on facility ops"
+                        >
+                            {device.deviceName}{" "}
+                            <FontAwesomeIcon
+                                icon={faLink}
+                                className="fa fa-link"
+                            />
+                        </a>
+                    </td>
                     <td>{device.deviceReadInterval}</td>
                     <td>
                         {device.deviceEnvironment}:{device.devicePort}
@@ -108,10 +124,7 @@ const Home = ({
         );
 
         if (!isDuplicate) setDeviceName(event.target.value);
-        else
-            alert(
-                "Name of device already exists, please try a different name!"
-            );
+        else duplicateName();
     };
 
     const handleSubmit = async (event) => {
@@ -167,6 +180,7 @@ const Home = ({
         await setDevices(devicesList);
 
         closeModal();
+        success();
     };
 
     return (
@@ -241,6 +255,7 @@ const Home = ({
             <section className="dashboard__devices">
                 {generateDevices()}
             </section>
+            <ToastContainer />
         </main>
     );
 };

@@ -1,154 +1,163 @@
 .dashboard {
-	padding: 2vh 20vw;
-	overflow-x: hidden;
-	min-height: 100%;
-	margin-bottom: -80px;
+    padding: 2vh 20vw;
+    overflow-x: hidden;
+    min-height: 100%;
+    margin-bottom: -80px;
 }
 
 .dashboard__heading {
-	display: flex;
-	flex-direction: row;
-	align-items: center;
-	justify-content: space-between;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
 }
 
 .bar {
-	background-color: #0585c2;
-	width: 100%;
-	height: 10px;
-	border-radius: 9999px;
+    background-color: #0585c2;
+    width: 100%;
+    height: 10px;
+    border-radius: 9999px;
 }
 
 .dashboard__devices > ul {
-	list-style: none;
-	padding: 0;
-	width: 100%;
-	height: auto;
+    list-style: none;
+    padding: 0;
+    width: 100%;
+    height: auto;
 }
 
 .dashboard__devices__device {
-	box-shadow: 0 8px 18px -6px black;
-	width: 100%;
-	height: 100px;
-	display: flex;
-	flex-direction: row;
-	align-items: center;
-	border-radius: 20px;
-	justify-content: space-between;
-	margin: 2% 0;
+    box-shadow: 0 8px 18px -6px black;
+    width: 100%;
+    height: 100px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    border-radius: 20px;
+    justify-content: space-between;
+    margin: 2% 0;
 }
 
 .dashboard__devices__device__text {
-	margin-left: 2vw;
-	font-size: x-large;
-	font-weight: bold;
+    margin-left: 2vw;
+    font-size: x-large;
+    font-weight: bold;
 }
 
 .dashboard__devices__device__icons {
-	display: flex;
-	flex-direction: row;
+    display: flex;
+    flex-direction: row;
 }
 
 .dashboard__devices__device__icons__icon {
-	margin-right: 2vw;
+    margin-right: 2vw;
 }
 
 .dashboard__heading__icon,
 .dashboard__devices__device__icons__icon {
-	width: 50px;
-	height: 50px;
-	width: 50px;
-	height: 50px;
-	display: flex;
-	align-items: center;
-	justify-content: center;
-	border: none;
-	background-color: white;
+    width: 50px;
+    height: 50px;
+    width: 50px;
+    height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: none;
+    background-color: white;
 }
 
 .dashboard__heading__icon:hover,
 .dashboard__devices__device__icons__icon:hover {
-	box-shadow: 0 8px 18px -6px black;
-	border-radius: 9999px;
+    box-shadow: 0 8px 18px -6px black;
+    border-radius: 9999px;
 }
 
 .modal__header {
-	display: flex;
-	justify-content: space-between;
-	align-items: center;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
 }
 
 .modal__header > button {
-	border: none;
-	height: fit-content;
-	background-color: white;
+    border: none;
+    height: fit-content;
+    background-color: white;
 }
 
 .modal__form {
-	display: flex;
-	flex-direction: column;
+    display: flex;
+    flex-direction: column;
 }
 
 .modal__form > div {
-	display: flex;
-	flex-direction: row;
-	justify-content: space-between;
-	align-items: center;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
 }
 
 .modal__form > div > label {
-	padding: 1rem 2rem 1rem 0;
+    padding: 1rem 2rem 1rem 0;
 }
 
 .modal__form > div > input {
-	height: fit-content;
+    height: fit-content;
 }
 
 /* Define an animation behavior */
 @keyframes spinner {
-	to {
-		transform: rotate(360deg);
-	}
+    to {
+        transform: rotate(360deg);
+    }
 }
 
 /* This is the class name given by the Font Awesome component when icon contains 'spinner' */
 .fa-spinner {
-	/* Apply 'spinner' keyframes looping once every second (1s)  */
-	animation: spinner 1s linear infinite;
+    /* Apply 'spinner' keyframes looping once every second (1s)  */
+    animation: spinner 1s linear infinite;
 }
 
 .online {
-	color: #26b326;
+    color: #26b326;
     font-weight: bolder;
 }
 
 table {
-	width: 96%;
-	border-collapse: collapse;
-	margin: 2%;
+    width: 96%;
+    border-collapse: collapse;
+    margin: 2%;
 }
 
 thead {
-	border-bottom: 1px solid black;
+    border-bottom: 1px solid black;
 }
 
 tbody > tr:first-child {
-	padding-top: 1em;
+    padding-top: 1em;
 }
 
 tbody > tr > td:first-child {
-	font-weight: bold;
-	font-size: medium;
+    font-weight: bold;
+    font-size: medium;
+}
+
+tbody > tr > td:first-child > a {
+    text-decoration: none;
+    color: inherit;
 }
 
 tbody > tr > td {
-	padding-bottom: 1em;
-	border-bottom: 1px dotted grey;
+    padding-bottom: 1em;
+    border-bottom: 1px dotted grey;
 }
 
 tbody > tr:nth-child(even) {
-	background: #ccc;
+    background: #ccc;
 }
 tbody > tr:nth-child(odd) {
-	background: #fff;
+    background: #fff;
+}
+
+.fa-link {
+    width: 0.8em !important;
 }
