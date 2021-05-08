@@ -144,6 +144,7 @@ tbody > tr > td:first-child {
 tbody > tr > td:first-child > a {
     text-decoration: none;
     color: inherit;
+    padding-left: 0.3em;
 }
 
 tbody > tr > td {
