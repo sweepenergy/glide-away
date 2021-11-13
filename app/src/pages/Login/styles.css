@@ -34,7 +34,7 @@
 
 .input-control label {
 	display: block;
-	color: #ff0066;
+	color: #0585c2;
 	padding: 10px 0;
 }
 
@@ -45,7 +45,7 @@
 }
 
 .button {
-	background-color: #ff0066;
+	background-color: #0585c2;
 	color: #fff;
 	font: bold 15px courier;
 	height: 35px;
